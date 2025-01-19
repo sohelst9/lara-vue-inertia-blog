@@ -1,9 +1,17 @@
-<template>
+<script setup>
 
+</script>
+
+
+<template>
+    <Head>
+        <meta head-key="description" name="description" content="This is default meta desc">
+        <meta head-key="title" name="title" content="default title">
+    </Head>
     <!---- header ---->
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container">
-            <a class="navbar-brand" href="#">Hello Blog</a>
+            <Link class="navbar-brand" href="/">Hello Blog</Link>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -11,10 +19,16 @@
             <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <Link class="nav-link active" aria-current="page" href="/">Home</Link>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
+                        <Link class="nav-link" href="/blogs">Blog</Link>
+                    </li>
+                    <li class="nav-item">
+                        <Link class="nav-link" href="/about">About Us</Link>
+                    </li>
+                    <li class="nav-item">
+                        <Link class="nav-link" href="/contact">Contact Us</Link>
                     </li>
 
                 </ul>
