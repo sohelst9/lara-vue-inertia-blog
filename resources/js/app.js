@@ -1,11 +1,12 @@
 import { createApp, h } from 'vue'
 import { createInertiaApp, Head, Link } from '@inertiajs/vue3'
-import 'bootstrap/dist/css/bootstrap.min.css'
-import 'bootstrap'
 import Layout from './Layouts/layout.vue'
+import 'swiper/css'
+import 'swiper/css/navigation'
+import 'swiper/css/pagination'
 
 createInertiaApp({
-  title: (title) => `Hello Blogger ${title}`,
+  title: (title) => `Hello WorldBlog ${title}`,
   resolve: name => {
     const pages = import.meta.glob('./Pages/**/*.vue', { eager: true })
     let page = pages[`./Pages/${name}.vue`]
