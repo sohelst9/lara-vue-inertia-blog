@@ -1,9 +1,9 @@
 import { createApp, h } from 'vue'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap/dist/js/bootstrap.bundle.js'
+import 'bootstrap-icons/font/bootstrap-icons.css'
 import { createInertiaApp, Head, Link } from '@inertiajs/vue3'
 import Layout from './Layouts/layout.vue'
-import 'swiper/css'
-import 'swiper/css/navigation'
-import 'swiper/css/pagination'
 
 createInertiaApp({
   title: (title) => `Hello WorldBlog ${title}`,
