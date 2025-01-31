@@ -1,3 +1,37 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+
+
+/* .breadcrumbs all styles  */
+.page-title {
+    background: #f8f9fa;
+    padding: 1rem 0;
+    margin-bottom: 0.5rem;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+.breadcrumbs {
+    margin-top: 0.5rem;
+}
+
+.breadcrumbs ol {
+    list-style: none;
+    display: flex;
+    gap: 0.5rem;
+    padding: 0;
+}
+
+.breadcrumbs li {
+    color: #666;
+    font-size: 0.95rem;
+}
+
+.breadcrumbs a {
+    color: #2b4eff;
+    text-decoration: none;
+}
+
+/* .breadcrumbs all styles end  */

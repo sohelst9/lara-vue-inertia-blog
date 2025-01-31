@@ -48,32 +48,167 @@ class PagesController extends Controller
             'link' => '/',
         ];
 
-        // return $trendingPost;
+        $categoryBasedPosts = [
+            [
+                'category' => 'Fashion',
+                'slug' => 'fashion',
+                'posts' => [
+                    [
+                        'image' => asset('assets/img/post-landscape-1.jpg'),
+                        'title' => 'Top 10 Fashion Trends for 2025',
+                        'description' => 'Discover the latest fashion trends and stay ahead of the game...',
+                        'link' => '/',
+                    ],
+                    [
+                        'image' => asset('assets/img/post-landscape-1.jpg'),
+                        'title' => 'How to Style Your Winter Outfits',
+                        'description' => 'Winter is coming! Learn how to style your outfits perfectly...',
+                        'link' => '/',
+                    ],
+                    [
+                        'image' => asset('assets/img/post-landscape-1.jpg'),
+                        'title' => 'How to Style Your Winter Outfits',
+                        'description' => 'Winter is coming! Learn how to style your outfits perfectly...',
+                        'link' => '/',
+                    ],
+                    [
+                        'image' => asset('assets/img/post-landscape-1.jpg'),
+                        'title' => 'How to Style Your Winter Outfits',
+                        'description' => 'Winter is coming! Learn how to style your outfits perfectly...',
+                        'link' => '/',
+                    ],
+                ],
+            ],
+            [
+                'category' => 'Technology',
+                'slug' => 'technology',
+                'posts' => [
+                    [
+                        'image' => asset('assets/img/post-landscape-1.jpg'),
+                        'title' => 'AI Revolution: What to Expect in the Next 5 Years',
+                        'description' => 'Artificial Intelligence is evolving rapidly. Here’s what’s next...',
+                        'link' => '/',
+                    ],
+                    [
+                        'image' => asset('assets/img/post-landscape-1.jpg'),
+                        'title' => 'Best Laptops for Coding in 2025',
+                        'description' => 'Looking for the best laptop for programming? Here’s our top picks...',
+                        'link' => '/',
+                    ],
+                    [
+                        'image' => asset('assets/img/post-landscape-1.jpg'),
+                        'title' => 'Best Laptops for Coding in 2025',
+                        'description' => 'Looking for the best laptop for programming? Here’s our top picks...',
+                        'link' => '/',
+                    ],
+                    [
+                        'image' => asset('assets/img/post-landscape-1.jpg'),
+                        'title' => 'Best Laptops for Coding in 2025',
+                        'description' => 'Looking for the best laptop for programming? Here’s our top picks...',
+                        'link' => '/',
+                    ],
+                    [
+                        'image' => asset('assets/img/post-landscape-1.jpg'),
+                        'title' => 'Best Laptops for Coding in 2025',
+                        'description' => 'Looking for the best laptop for programming? Here’s our top picks...',
+                        'link' => '/',
+                    ],
+                    [
+                        'image' => asset('assets/img/post-landscape-1.jpg'),
+                        'title' => 'Best Laptops for Coding in 2025',
+                        'description' => 'Looking for the best laptop for programming? Here’s our top picks...',
+                        'link' => '/',
+                    ],
+                    [
+                        'image' => asset('assets/img/post-landscape-1.jpg'),
+                        'title' => 'Best Laptops for Coding in 2025',
+                        'description' => 'Looking for the best laptop for programming? Here’s our top picks...',
+                        'link' => '/',
+                    ],
+                ],
+            ],
+            [
+                'category' => 'Health & Fitness',
+                'slug' => 'health-fitness',
+                'posts' => [
+                    [
+                        'image' => asset('assets/img/post-landscape-1.jpg'),
+                        'title' => '5 Morning Habits for a Healthy Lifestyle',
+                        'description' => 'Start your day with these healthy habits and feel the difference...',
+                        'link' => '/',
+                    ],
+                    [
+                        'image' => asset('assets/img/post-landscape-1.jpg'),
+                        'title' => 'The Best Diet Plan for Weight Loss',
+                        'description' => 'Want to lose weight? Here’s a scientifically proven diet plan...',
+                        'link' => '/',
+                    ],
+                    [
+                        'image' => asset('assets/img/post-landscape-1.jpg'),
+                        'title' => 'The Best Diet Plan for Weight Loss',
+                        'description' => 'Want to lose weight? Here’s a scientifically proven diet plan...',
+                        'link' => '/',
+                    ],
+                    [
+                        'image' => asset('assets/img/post-landscape-1.jpg'),
+                        'title' => 'The Best Diet Plan for Weight Loss',
+                        'description' => 'Want to lose weight? Here’s a scientifically proven diet plan...',
+                        'link' => '/',
+                    ],
+                    [
+                        'image' => asset('assets/img/post-landscape-1.jpg'),
+                        'title' => 'The Best Diet Plan for Weight Loss',
+                        'description' => 'Want to lose weight? Here’s a scientifically proven diet plan...',
+                        'link' => '/',
+                    ],
+                    [
+                        'image' => asset('assets/img/post-landscape-1.jpg'),
+                        'title' => 'The Best Diet Plan for Weight Loss',
+                        'description' => 'Want to lose weight? Here’s a scientifically proven diet plan...',
+                        'link' => '/',
+                    ],
+                ],
+            ],
+        ];
 
+// return $categoryBasedPosts;
 
         return Inertia::render('Home', [
             'sliderData' => $sliderData,
             'trendingPost' => $trendingPost,
+            'categoryBasedPosts' => $categoryBasedPosts,
         ]);
     }
 
     //--blogs
     public function blogs()
     {
-        return Inertia::render('Blogs');
+        return Inertia::render('Blogs', [
+            'blogImage' => asset('assets/img/blog/blog-1.jpg'),
+        ]);
     }
 
     //--blog
-    public function blog()
+    public function blog($slug)
     {
-        return Inertia::render('Blog');
+        $allImage = [
+            'blog1' => asset('assets/img/blog/blog-1.jpg'),
+            'insidepost' => asset('assets/img/blog/blog-inside-post.jpg'),
+            'commentimage' => asset('assets/img/blog/comments-1.jpg'),
+            'recent' => asset('assets/img/blog/blog-recent-1.jpg'),
+        ];
+        return Inertia::render('Blog',[
+            'allImage' => $allImage,
+        ]);
     }
 
     //-- about
     public function about()
     {
         // sleep(10);
-        return Inertia::render('About');
+        return Inertia::render('About', [
+            'image' => asset('assets/img/post-landscape-1.jpg')
+        ]);
     }
 
     //-- contact

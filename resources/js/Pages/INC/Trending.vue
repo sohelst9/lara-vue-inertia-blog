@@ -3,7 +3,7 @@
 const props = defineProps({
     trendingPost: {
         type: Object,
-        required: true 
+        required: true
     }
 })
 
@@ -49,76 +49,168 @@ const props = defineProps({
                 <!-- Grid Posts -->
                 <div class="col-lg-8">
                     <div class="row g-4">
-                       
-                        <div class="col-lg-4">
-                            <div class="grid-posts">
-                                <div class="post-entry mb-4 bg-white rounded-3 shadow-sm hover-effect">
-                                    <a href="blog-details.html" class="d-block overflow-hidden rounded-top-3">
-                                        <img :src="trendingPost.blogimage" alt="Post image" class="img-fluid post-img">
-                                    </a>
-                                    <div class="p-3">
-                                        <div class="post-meta mb-2">
-                                            <span class="category-badge sport">Sport</span>
-                                            <span class="mx-1 text-muted">•</span>
-                                            <span class="text-muted small">Jul 5th '22</span>
-                                        </div>
-                                        <h3 class="post-title small-title">
-                                            <a href="blog-details.html" class="text-decoration-none text-dark">
-                                                Let's Get Back to Work, New York
-                                            </a>
-                                        </h3>
-                                    </div>
-                                </div>
-                                
-                            </div>
-                        </div>
 
-                       
-                        <div class="col-lg-4">
-                            <div class="grid-posts">
-                                <div class="post-entry mb-4 bg-white rounded-3 shadow-sm hover-effect">
-                                    <a href="blog-details.html" class="d-block overflow-hidden rounded-top-3">
-                                        <img :src="trendingPost.blogimage" alt="Post image" class="img-fluid post-img">
-                                    </a>
-                                    <div class="p-3">
-                                        <div class="post-meta mb-2">
-                                            <span class="category-badge business">Business</span>
-                                            <span class="mx-1 text-muted">•</span>
-                                            <span class="text-muted small">Jul 5th '22</span>
-                                        </div>
-                                        <h3 class="post-title small-title">
-                                            <a href="blog-details.html" class="text-decoration-none text-dark">
-                                                6 Easy Steps To Create Your Own Cute Merch
+                        <div class="col-md-8">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="grid-posts">
+                                        <div class="post-entry mb-4 bg-white rounded-3 shadow-sm hover-effect">
+                                            <a href="blog-details.html" class="d-block overflow-hidden rounded-top-3">
+                                                <img :src="trendingPost.blogimage" alt="Post image"
+                                                    class="img-fluid post-img">
                                             </a>
-                                        </h3>
-                                    </div>
-                                </div>
-                                
-                            </div>
-                        </div>
-
-                        
-                        <div class="col-lg-4">
-                            <div class="trending bg-white rounded-3 shadow-sm p-4">
-                                <h3 class="section-title mb-4">Trending</h3>
-                                <div class="trending-posts">
-                                    <div class="trending-post-item mb-4 pb-4 border-bottom">
-                                        <a href="blog-details.html" class="text-decoration-none">
-                                            <div class="d-flex">
-                                                <span class="number me-3">1</span>
-                                                <div>
-                                                    <h4 class="trending-title mb-2">The Best Homemade Masks for Face
-                                                    </h4>
-                                                    <span class="author text-muted small">Jane Cooper</span>
+                                            <div class="p-3">
+                                                <div class="post-meta mb-2">
+                                                    <span class="category-badge sport">Sport</span>
+                                                    <span class="mx-1 text-muted">•</span>
+                                                    <span class="text-muted small">Jul 5th '22</span>
                                                 </div>
+                                                <h3 class="post-title small-title">
+                                                    <a href="blog-details.html" class="text-decoration-none text-dark">
+                                                        Let's Get Back to Work, New York
+                                                    </a>
+                                                </h3>
                                             </div>
-                                        </a>
+                                        </div>
+
                                     </div>
-                                    
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="grid-posts">
+                                        <div class="post-entry mb-4 bg-white rounded-3 shadow-sm hover-effect">
+                                            <a href="blog-details.html" class="d-block overflow-hidden rounded-top-3">
+                                                <img :src="trendingPost.blogimage" alt="Post image"
+                                                    class="img-fluid post-img">
+                                            </a>
+                                            <div class="p-3">
+                                                <div class="post-meta mb-2">
+                                                    <span class="category-badge business">Business</span>
+                                                    <span class="mx-1 text-muted">•</span>
+                                                    <span class="text-muted small">Jul 5th '22</span>
+                                                </div>
+                                                <h3 class="post-title small-title">
+                                                    <a href="blog-details.html" class="text-decoration-none text-dark">
+                                                        6 Easy Steps To Create Your Own Cute Merch
+                                                    </a>
+                                                </h3>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="grid-posts">
+                                        <div class="post-entry mb-4 bg-white rounded-3 shadow-sm hover-effect">
+                                            <a href="blog-details.html" class="d-block overflow-hidden rounded-top-3">
+                                                <img :src="trendingPost.blogimage" alt="Post image"
+                                                    class="img-fluid post-img">
+                                            </a>
+                                            <div class="p-3">
+                                                <div class="post-meta mb-2">
+                                                    <span class="category-badge business">Business</span>
+                                                    <span class="mx-1 text-muted">•</span>
+                                                    <span class="text-muted small">Jul 5th '22</span>
+                                                </div>
+                                                <h3 class="post-title small-title">
+                                                    <a href="blog-details.html" class="text-decoration-none text-dark">
+                                                        6 Easy Steps To Create Your Own Cute Merch
+                                                    </a>
+                                                </h3>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="grid-posts">
+                                        <div class="post-entry mb-4 bg-white rounded-3 shadow-sm hover-effect">
+                                            <a href="blog-details.html" class="d-block overflow-hidden rounded-top-3">
+                                                <img :src="trendingPost.blogimage" alt="Post image"
+                                                    class="img-fluid post-img">
+                                            </a>
+                                            <div class="p-3">
+                                                <div class="post-meta mb-2">
+                                                    <span class="category-badge business">Business</span>
+                                                    <span class="mx-1 text-muted">•</span>
+                                                    <span class="text-muted small">Jul 5th '22</span>
+                                                </div>
+                                                <h3 class="post-title small-title">
+                                                    <a href="blog-details.html" class="text-decoration-none text-dark">
+                                                        6 Easy Steps To Create Your Own Cute Merch
+                                                    </a>
+                                                </h3>
+                                            </div>
+                                        </div>
+
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        
+
+                        <div class="col-md-4">
+                            <div class="col-lg-12">
+                                <div class="trending bg-white rounded-3 shadow-sm p-4">
+                                    <h3 class="section-title mb-4">Trending</h3>
+                                    <div class="trending-posts">
+
+                                        <div class="trending-post-item mb-4 pb-4 border-bottom">
+                                            <a href="blog-details.html" class="text-decoration-none">
+                                                <div class="d-flex">
+                                                    <span class="number me-3">1</span>
+                                                    <div>
+                                                        <h4 class="trending-title mb-2">The Best Homemade Masks for Face
+                                                        </h4>
+                                                        <span class="author text-muted small">Jane Cooper</span>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+
+                                        <div class="trending-post-item mb-4 pb-4 border-bottom">
+                                            <a href="blog-details.html" class="text-decoration-none">
+                                                <div class="d-flex">
+                                                    <span class="number me-3">2</span>
+                                                    <div>
+                                                        <h4 class="trending-title mb-2">The Best Homemade Masks for Face
+                                                        </h4>
+                                                        <span class="author text-muted small">Jane Cooper</span>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="trending-post-item mb-4 pb-4 border-bottom">
+                                            <a href="blog-details.html" class="text-decoration-none">
+                                                <div class="d-flex">
+                                                    <span class="number me-3">3</span>
+                                                    <div>
+                                                        <h4 class="trending-title mb-2">The Best Homemade Masks for Face
+                                                        </h4>
+                                                        <span class="author text-muted small">Jane Cooper</span>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="trending-post-item mb-4 pb-4 border-bottom">
+                                            <a href="blog-details.html" class="text-decoration-none">
+                                                <div class="d-flex">
+                                                    <span class="number me-3">4</span>
+                                                    <div>
+                                                        <h4 class="trending-title mb-2">The Best Homemade Masks for Face
+                                                        </h4>
+                                                        <span class="author text-muted small">Jane Cooper</span>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
                     </div>
                 </div>
             </div>
