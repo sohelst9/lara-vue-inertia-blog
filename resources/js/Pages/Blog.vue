@@ -299,7 +299,7 @@ const props = defineProps({
 
       </div>
 
-      <div class="col-lg-4 sidebar">
+      <div class="col-lg-4 sidebars">
 
         <div class="widgets-container">
 
@@ -681,7 +681,7 @@ textarea.form-control {
 }
 
 /* Sidebar Styles */
-.sidebar {
+.sidebars {
   padding-left: 20px;
 }
 
@@ -808,7 +808,7 @@ textarea.form-control {
 
 /* Responsive Design */
 @media (max-width: 1199px) {
-  .sidebar {
+  .sidebars {
     padding-left: 0;
     margin-top: 40px;
   }

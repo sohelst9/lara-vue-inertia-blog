@@ -1,304 +1,304 @@
 <script setup>
 
 const props = defineProps({
-    blogImage: {
-        type : String,
-        required : true
+  blogImage: {
+    type: String,
+    required: true
 
-    },
+  },
 })
 
 </script>
 
 <template>
 
-    <Head>
-        <title> | Blogs</title>
-        <meta head-key="title" name="title" content="Blogs page meta title">
-        <meta head-key="description" name="description" content="Blogs page meta description">
-    </Head>
-    <div>
-        <div class="page-title">
-            <div class="container">
-                <h1>All blogs</h1>
-                <nav class="breadcrumbs">
-                    <ol>
-                        <li>
-                            <Link href="/">Home</Link>
-                        </li>
-                        <li class="current">Blogs</li>
-                    </ol>
-                </nav>
-            </div>
-        </div>
+  <Head>
+    <title> | Blogs</title>
+    <meta head-key="title" name="title" content="Blogs page meta title">
+    <meta head-key="description" name="description" content="Blogs page meta description">
+  </Head>
+  <div>
+    <div class="page-title">
+      <div class="container">
+        <h1>All blogs</h1>
+        <nav class="breadcrumbs">
+          <ol>
+            <li>
+              <Link href="/">Home</Link>
+            </li>
+            <li class="current">Blogs</li>
+          </ol>
+        </nav>
+      </div>
     </div>
+  </div>
 
-    <div class="container">
-        <div class="row">
+  <div class="container">
+    <div class="row">
 
-            <div class="col-lg-8">
+      <div class="col-lg-8">
 
-                <!-- Blog Posts Section -->
-                <section id="blog-posts" class="blog-posts section">
+        <!-- Blog Posts Section -->
+        <section id="blog-posts" class="blog-posts section">
 
-                    <div class="container">
-                        <div class="row gy-4">
+          <div class="container">
+            <div class="row gy-4">
 
-                            <div class="col-lg-6">
-                                <article class="position-relative h-100">
+              <div class="col-lg-6">
+                <article class="position-relative h-100">
 
-                                    <div class="post-img position-relative overflow-hidden">
-                                        <img :src="blogImage" class="img-fluid" alt="">
-                                        <span class="post-date">December 12</span>
-                                    </div>
+                  <div class="post-img position-relative overflow-hidden">
+                    <img :src="blogImage" class="img-fluid" alt="">
+                    <span class="post-date">December 12</span>
+                  </div>
 
-                                    <div class="post-content d-flex flex-column">
+                  <div class="post-content d-flex flex-column">
 
-                                        <h3 class="post-title">Dolorum optio tempore voluptas dignissimos cumque fuga
-                                            qui quibusdam quia</h3>
+                    <h3 class="post-title">Dolorum optio tempore voluptas dignissimos cumque fuga
+                      qui quibusdam quia</h3>
 
-                                        <div class="meta d-flex align-items-center">
-                                            <div class="d-flex align-items-center">
-                                                <i class="bi bi-person"></i> <span class="ps-2">John Doe</span>
-                                            </div>
-                                            <span class="px-3 text-black-50">/</span>
-                                            <div class="d-flex align-items-center">
-                                                <i class="bi bi-folder2"></i> <span class="ps-2">Politics</span>
-                                            </div>
-                                        </div>
-
-                                        <p>
-                                            Similique neque nam consequuntur ad non maxime aliquam quas. Quibusdam animi
-                                            praesentium. Aliquam et laboriosam eius aut nostrum quidem aliquid dicta.
-                                        </p>
-
-                                        <hr>
-
-                                        <a href="blog-details.html" class="readmore stretched-link"><span>Read
-                                                More</span><i class="bi bi-arrow-right"></i></a>
-
-                                    </div>
-
-                                </article>
-                            </div>
-                            <div class="col-lg-6">
-                                <article class="position-relative h-100">
-
-                                    <div class="post-img position-relative overflow-hidden">
-                                        <img :src="blogImage" class="img-fluid" alt="">
-                                        <span class="post-date">December 12</span>
-                                    </div>
-
-                                    <div class="post-content d-flex flex-column">
-
-                                        <h3 class="post-title">Dolorum optio tempore voluptas dignissimos cumque fuga
-                                            qui quibusdam quia</h3>
-
-                                        <div class="meta d-flex align-items-center">
-                                            <div class="d-flex align-items-center">
-                                                <i class="bi bi-person"></i> <span class="ps-2">John Doe</span>
-                                            </div>
-                                            <span class="px-3 text-black-50">/</span>
-                                            <div class="d-flex align-items-center">
-                                                <i class="bi bi-folder2"></i> <span class="ps-2">Politics</span>
-                                            </div>
-                                        </div>
-
-                                        <p>
-                                            Similique neque nam consequuntur ad non maxime aliquam quas. Quibusdam animi
-                                            praesentium. Aliquam et laboriosam eius aut nostrum quidem aliquid dicta.
-                                        </p>
-
-                                        <hr>
-
-                                        <a href="blog-details.html" class="readmore stretched-link"><span>Read
-                                                More</span><i class="bi bi-arrow-right"></i></a>
-
-                                    </div>
-
-                                </article>
-                            </div>
-                            <div class="col-lg-6">
-                                <article class="position-relative h-100">
-
-                                    <div class="post-img position-relative overflow-hidden">
-                                        <img :src="blogImage" class="img-fluid" alt="">
-                                        <span class="post-date">December 12</span>
-                                    </div>
-
-                                    <div class="post-content d-flex flex-column">
-
-                                        <h3 class="post-title">Dolorum optio tempore voluptas dignissimos cumque fuga
-                                            qui quibusdam quia</h3>
-
-                                        <div class="meta d-flex align-items-center">
-                                            <div class="d-flex align-items-center">
-                                                <i class="bi bi-person"></i> <span class="ps-2">John Doe</span>
-                                            </div>
-                                            <span class="px-3 text-black-50">/</span>
-                                            <div class="d-flex align-items-center">
-                                                <i class="bi bi-folder2"></i> <span class="ps-2">Politics</span>
-                                            </div>
-                                        </div>
-
-                                        <p>
-                                            Similique neque nam consequuntur ad non maxime aliquam quas. Quibusdam animi
-                                            praesentium. Aliquam et laboriosam eius aut nostrum quidem aliquid dicta.
-                                        </p>
-
-                                        <hr>
-
-                                        <a href="blog-details.html" class="readmore stretched-link"><span>Read
-                                                More</span><i class="bi bi-arrow-right"></i></a>
-
-                                    </div>
-
-                                </article>
-                            </div>
-                            <div class="col-lg-6">
-                                <article class="position-relative h-100">
-
-                                    <div class="post-img position-relative overflow-hidden">
-                                        <img :src="blogImage" class="img-fluid" alt="">
-                                        <span class="post-date">December 12</span>
-                                    </div>
-
-                                    <div class="post-content d-flex flex-column">
-
-                                        <h3 class="post-title">Dolorum optio tempore voluptas dignissimos cumque fuga
-                                            qui quibusdam quia</h3>
-
-                                        <div class="meta d-flex align-items-center">
-                                            <div class="d-flex align-items-center">
-                                                <i class="bi bi-person"></i> <span class="ps-2">John Doe</span>
-                                            </div>
-                                            <span class="px-3 text-black-50">/</span>
-                                            <div class="d-flex align-items-center">
-                                                <i class="bi bi-folder2"></i> <span class="ps-2">Politics</span>
-                                            </div>
-                                        </div>
-
-                                        <p>
-                                            Similique neque nam consequuntur ad non maxime aliquam quas. Quibusdam animi
-                                            praesentium. Aliquam et laboriosam eius aut nostrum quidem aliquid dicta.
-                                        </p>
-
-                                        <hr>
-
-                                        <a href="blog-details.html" class="readmore stretched-link"><span>Read
-                                                More</span><i class="bi bi-arrow-right"></i></a>
-
-                                    </div>
-
-                                </article>
-                            </div>
-
-                        </div>
+                    <div class="meta d-flex align-items-center">
+                      <div class="d-flex align-items-center">
+                        <i class="bi bi-person"></i> <span class="ps-2">John Doe</span>
+                      </div>
+                      <span class="px-3 text-black-50">/</span>
+                      <div class="d-flex align-items-center">
+                        <i class="bi bi-folder2"></i> <span class="ps-2">Politics</span>
+                      </div>
                     </div>
 
-                </section><!-- /Blog Posts Section -->
+                    <p>
+                      Similique neque nam consequuntur ad non maxime aliquam quas. Quibusdam animi
+                      praesentium. Aliquam et laboriosam eius aut nostrum quidem aliquid dicta.
+                    </p>
 
-                <!-- Blog Pagination Section -->
-                <section id="blog-pagination" class="blog-pagination section">
+                    <hr>
 
-                    <div class="container">
-                        <div class="d-flex justify-content-center">
-                            <ul>
-                                <li><a href="#"><i class="bi bi-chevron-left"></i></a></li>
-                                <li><a href="#">1</a></li>
-                                <li><a href="#" class="active">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">4</a></li>
-                                <li>...</li>
-                                <li><a href="#">10</a></li>
-                                <li><a href="#"><i class="bi bi-chevron-right"></i></a></li>
-                            </ul>
-                        </div>
+                    <a href="blog-details.html" class="readmore stretched-link"><span>Read
+                        More</span><i class="bi bi-arrow-right"></i></a>
+
+                  </div>
+
+                </article>
+              </div>
+              <div class="col-lg-6">
+                <article class="position-relative h-100">
+
+                  <div class="post-img position-relative overflow-hidden">
+                    <img :src="blogImage" class="img-fluid" alt="">
+                    <span class="post-date">December 12</span>
+                  </div>
+
+                  <div class="post-content d-flex flex-column">
+
+                    <h3 class="post-title">Dolorum optio tempore voluptas dignissimos cumque fuga
+                      qui quibusdam quia</h3>
+
+                    <div class="meta d-flex align-items-center">
+                      <div class="d-flex align-items-center">
+                        <i class="bi bi-person"></i> <span class="ps-2">John Doe</span>
+                      </div>
+                      <span class="px-3 text-black-50">/</span>
+                      <div class="d-flex align-items-center">
+                        <i class="bi bi-folder2"></i> <span class="ps-2">Politics</span>
+                      </div>
                     </div>
 
-                </section>
-                <!-- /Blog Pagination Section -->
+                    <p>
+                      Similique neque nam consequuntur ad non maxime aliquam quas. Quibusdam animi
+                      praesentium. Aliquam et laboriosam eius aut nostrum quidem aliquid dicta.
+                    </p>
+
+                    <hr>
+
+                    <a href="blog-details.html" class="readmore stretched-link"><span>Read
+                        More</span><i class="bi bi-arrow-right"></i></a>
+
+                  </div>
+
+                </article>
+              </div>
+              <div class="col-lg-6">
+                <article class="position-relative h-100">
+
+                  <div class="post-img position-relative overflow-hidden">
+                    <img :src="blogImage" class="img-fluid" alt="">
+                    <span class="post-date">December 12</span>
+                  </div>
+
+                  <div class="post-content d-flex flex-column">
+
+                    <h3 class="post-title">Dolorum optio tempore voluptas dignissimos cumque fuga
+                      qui quibusdam quia</h3>
+
+                    <div class="meta d-flex align-items-center">
+                      <div class="d-flex align-items-center">
+                        <i class="bi bi-person"></i> <span class="ps-2">John Doe</span>
+                      </div>
+                      <span class="px-3 text-black-50">/</span>
+                      <div class="d-flex align-items-center">
+                        <i class="bi bi-folder2"></i> <span class="ps-2">Politics</span>
+                      </div>
+                    </div>
+
+                    <p>
+                      Similique neque nam consequuntur ad non maxime aliquam quas. Quibusdam animi
+                      praesentium. Aliquam et laboriosam eius aut nostrum quidem aliquid dicta.
+                    </p>
+
+                    <hr>
+
+                    <a href="blog-details.html" class="readmore stretched-link"><span>Read
+                        More</span><i class="bi bi-arrow-right"></i></a>
+
+                  </div>
+
+                </article>
+              </div>
+              <div class="col-lg-6">
+                <article class="position-relative h-100">
+
+                  <div class="post-img position-relative overflow-hidden">
+                    <img :src="blogImage" class="img-fluid" alt="">
+                    <span class="post-date">December 12</span>
+                  </div>
+
+                  <div class="post-content d-flex flex-column">
+
+                    <h3 class="post-title">Dolorum optio tempore voluptas dignissimos cumque fuga
+                      qui quibusdam quia</h3>
+
+                    <div class="meta d-flex align-items-center">
+                      <div class="d-flex align-items-center">
+                        <i class="bi bi-person"></i> <span class="ps-2">John Doe</span>
+                      </div>
+                      <span class="px-3 text-black-50">/</span>
+                      <div class="d-flex align-items-center">
+                        <i class="bi bi-folder2"></i> <span class="ps-2">Politics</span>
+                      </div>
+                    </div>
+
+                    <p>
+                      Similique neque nam consequuntur ad non maxime aliquam quas. Quibusdam animi
+                      praesentium. Aliquam et laboriosam eius aut nostrum quidem aliquid dicta.
+                    </p>
+
+                    <hr>
+
+                    <a href="blog-details.html" class="readmore stretched-link"><span>Read
+                        More</span><i class="bi bi-arrow-right"></i></a>
+
+                  </div>
+
+                </article>
+              </div>
 
             </div>
+          </div>
 
-            <div class="col-lg-4 sidebar">
+        </section><!-- /Blog Posts Section -->
 
-                <div class="widgets-container">
-                    <!-- Search Widget -->
-                    <div class="search-widget widget-item">
+        <!-- Blog Pagination Section -->
+        <section id="blog-pagination" class="blog-pagination section">
 
-                        <h3 class="widget-title">Search</h3>
-                        <form action="">
-                            <input type="text">
-                            <button type="submit" title="Search"><i class="bi bi-search"></i></button>
-                        </form>
-
-                    </div><!--/Search Widget -->
-
-                    <!-- Recent Posts Widget -->
-                    <div class="recent-posts-widget widget-item">
-
-                        <h3 class="widget-title">Recent Posts</h3>
-
-                        <div class="post-item">
-                            <img :src="blogImage" alt="" class="flex-shrink-0">
-                            <div>
-                                <h4><a href="blog-details.html">Nihil blanditiis at in nihil autem</a></h4>
-                                <time datetime="2020-01-01">Jan 1, 2020</time>
-                            </div>
-                        </div>
-                        <div class="post-item">
-                            <img :src="blogImage" alt="" class="flex-shrink-0">
-                            <div>
-                                <h4><a href="blog-details.html">Nihil blanditiis at in nihil autem</a></h4>
-                                <time datetime="2020-01-01">Jan 1, 2020</time>
-                            </div>
-                        </div>
-                        <div class="post-item">
-                            <img :src="blogImage" alt="" class="flex-shrink-0">
-                            <div>
-                                <h4><a href="blog-details.html">Nihil blanditiis at in nihil autem</a></h4>
-                                <time datetime="2020-01-01">Jan 1, 2020</time>
-                            </div>
-                        </div>
-                        <div class="post-item">
-                            <img :src="blogImage" alt="" class="flex-shrink-0">
-                            <div>
-                                <h4><a href="blog-details.html">Nihil blanditiis at in nihil autem</a></h4>
-                                <time datetime="2020-01-01">Jan 1, 2020</time>
-                            </div>
-                        </div>
-
-                     
-
-                    </div><!--/Recent Posts Widget -->
-
-                    <!-- Tags Widget -->
-                    <div class="tags-widget widget-item">
-
-                        <h3 class="widget-title">Tags</h3>
-                        <ul>
-                            <li><a href="#">App</a></li>
-                            <li><a href="#">IT</a></li>
-                            <li><a href="#">Business</a></li>
-                            <li><a href="#">Mac</a></li>
-                            <li><a href="#">Design</a></li>
-                            <li><a href="#">Office</a></li>
-                            <li><a href="#">Creative</a></li>
-                            <li><a href="#">Studio</a></li>
-                            <li><a href="#">Smart</a></li>
-                            <li><a href="#">Tips</a></li>
-                            <li><a href="#">Marketing</a></li>
-                        </ul>
-
-                    </div><!--/Tags Widget -->
-
-                </div>
-
+          <div class="container">
+            <div class="d-flex justify-content-center">
+              <ul>
+                <li><a href="#"><i class="bi bi-chevron-left"></i></a></li>
+                <li><a href="#">1</a></li>
+                <li><a href="#" class="active">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li>...</li>
+                <li><a href="#">10</a></li>
+                <li><a href="#"><i class="bi bi-chevron-right"></i></a></li>
+              </ul>
             </div>
+          </div>
+
+        </section>
+        <!-- /Blog Pagination Section -->
+
+      </div>
+
+      <div class="col-lg-4 blogs_sidebar">
+
+        <div class="widgets-container">
+          <!-- Search Widget -->
+          <div class="search-widget widget-item">
+
+            <h3 class="widget-title">Search</h3>
+            <form action="">
+              <input type="text">
+              <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+            </form>
+
+          </div><!--/Search Widget -->
+
+          <!-- Recent Posts Widget -->
+          <div class="recent-posts-widget widget-item">
+
+            <h3 class="widget-title">Recent Posts</h3>
+
+            <div class="post-item">
+              <img :src="blogImage" alt="" class="flex-shrink-0">
+              <div>
+                <h4><a href="blog-details.html">Nihil blanditiis at in nihil autem</a></h4>
+                <time datetime="2020-01-01">Jan 1, 2020</time>
+              </div>
+            </div>
+            <div class="post-item">
+              <img :src="blogImage" alt="" class="flex-shrink-0">
+              <div>
+                <h4><a href="blog-details.html">Nihil blanditiis at in nihil autem</a></h4>
+                <time datetime="2020-01-01">Jan 1, 2020</time>
+              </div>
+            </div>
+            <div class="post-item">
+              <img :src="blogImage" alt="" class="flex-shrink-0">
+              <div>
+                <h4><a href="blog-details.html">Nihil blanditiis at in nihil autem</a></h4>
+                <time datetime="2020-01-01">Jan 1, 2020</time>
+              </div>
+            </div>
+            <div class="post-item">
+              <img :src="blogImage" alt="" class="flex-shrink-0">
+              <div>
+                <h4><a href="blog-details.html">Nihil blanditiis at in nihil autem</a></h4>
+                <time datetime="2020-01-01">Jan 1, 2020</time>
+              </div>
+            </div>
+
+
+
+          </div><!--/Recent Posts Widget -->
+
+          <!-- Tags Widget -->
+          <div class="tags-widget widget-item">
+
+            <h3 class="widget-title">Tags</h3>
+            <ul>
+              <li><a href="#">App</a></li>
+              <li><a href="#">IT</a></li>
+              <li><a href="#">Business</a></li>
+              <li><a href="#">Mac</a></li>
+              <li><a href="#">Design</a></li>
+              <li><a href="#">Office</a></li>
+              <li><a href="#">Creative</a></li>
+              <li><a href="#">Studio</a></li>
+              <li><a href="#">Smart</a></li>
+              <li><a href="#">Tips</a></li>
+              <li><a href="#">Marketing</a></li>
+            </ul>
+
+          </div><!--/Tags Widget -->
 
         </div>
+
+      </div>
+
     </div>
+  </div>
 </template>
 
 
@@ -336,7 +336,7 @@ const props = defineProps({
   right: 0;
   width: 40%;
   height: 50%;
-  background: linear-gradient(135deg, transparent 0%, rgba(0,0,0,0.1) 100%);
+  background: linear-gradient(135deg, transparent 0%, rgba(0, 0, 0, 0.1) 100%);
   pointer-events: none;
 }
 
@@ -440,8 +440,8 @@ const props = defineProps({
   box-shadow: 0 4px 6px rgba(37, 99, 235, 0.2);
 }
 
-/* Sidebar */
-.sidebar {
+/* blogs_sidebar */
+.blogs_sidebar {
   padding-left: 2rem;
 }
 
@@ -587,7 +587,7 @@ const props = defineProps({
 }
 
 @media (max-width: 991px) {
-  .sidebar {
+  .blogs_sidebar {
     padding-left: 0;
     margin-top: 3rem;
   }
@@ -597,30 +597,30 @@ const props = defineProps({
   .blog-posts {
     padding: 2rem 0;
   }
-  
+
   .post-img {
     aspect-ratio: 3/2;
   }
-  
+
   .post-date {
     padding: 0.6rem 1.25rem;
     font-size: 0.8125rem;
     min-width: 100px;
   }
-  
+
   .post-content {
     padding: 1.5rem 1.25rem;
   }
-  
+
   .post-title {
     font-size: 1.125rem;
   }
-  
+
   .blog-pagination li a {
     width: 2.25rem;
     height: 2.25rem;
   }
-  
+
   .widget-item {
     padding: 1.25rem;
   }
@@ -630,34 +630,34 @@ const props = defineProps({
   .container {
     padding: 0 1rem;
   }
-  
+
   .post-img {
     aspect-ratio: 4/3;
   }
-  
+
   .post-date {
     padding: 0.5rem 1rem;
     font-size: 0.75rem;
     min-width: 90px;
   }
-  
+
   .post-content {
     padding: 1.25rem 1rem;
   }
-  
+
   .meta {
     flex-wrap: wrap;
     gap: 0.5rem;
   }
-  
+
   .search-widget form {
     padding: 0.375rem;
   }
-  
+
   .search-widget button {
     width: 2.5rem;
   }
-  
+
   .tags-widget a {
     padding: 0.375rem 0.75rem;
   }
@@ -667,20 +667,19 @@ const props = defineProps({
   .post-img {
     aspect-ratio: 1/1;
   }
-  
+
   .post-date {
     padding: 0.4rem 0.875rem;
     font-size: 0.75rem;
     min-width: 85px;
   }
-  
+
   .post-content {
     padding: 1.25rem 0.875rem;
   }
-  
+
   .widget-item {
     padding: 1rem;
   }
 }
-
 </style>

@@ -4,7 +4,6 @@ use App\Http\Controllers\Admin\DashbaordController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\PagesController;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -20,8 +19,11 @@ Route::get('/privacy', [PagesController::class, 'privacy'])->name('privacy');
 
 //-- dashboard routes define
 Route::get('/admin/login', [LoginController::class, 'showLoginForm'])->name('login');
+Route::post('/admin/login', [LoginController::class, 'storeLoginForm'])->name('login.store');
 Route::get('/admin/register', [RegisterController::class, 'showRegisterForm'])->name('register');
-Route::get('/dashboard', [DashbaordController::class, 'dashboard'])->name('admin.dashboard');
 
-Route::prefix('admin')->middleware(['auth'])->group(function() {
+Route::prefix('admin')->middleware(['auth'])->group(function () {
+    Route::post('/logout', [DashbaordController::class, 'logout'])->name('admin.logout');
+    Route::get('/dashboard', [DashbaordController::class, 'dashboard'])->name('admin.dashboard');
+    Route::get('/add-post', [DashbaordController::class, 'add_post'])->name('admin.post');
 });
