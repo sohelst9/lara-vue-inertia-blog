@@ -101,7 +101,7 @@ class CategoryController extends Controller
             return redirect()->back()->with('error', 'Category already exist.');
         }
 
-        $category->user_id =  Auth::user()->id;
+        $category->user_id =  $category->user_id;
         $category->name = $request->name;
         $category->slug = Str::slug($request->name);
         $category->description = $request->description;

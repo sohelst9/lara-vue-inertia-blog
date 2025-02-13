@@ -25,10 +25,4 @@ class DashbaordController extends Controller
     {
         return Inertia::render('Admin/Dashboard');
     }
-
-    //--add_post
-    public function add_post()
-    {
-        return Inertia::render('Admin/AddPost');
-    }
 }

@@ -39,6 +39,7 @@ const user = page.props.auth.user;
                         class="fa fa-tachometer-alt me-2"></i>Dashboard</Link>
                 
                 <Link href="/admin/category" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Category</Link>
+                <Link href="/admin/post" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Post</Link>
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
                             class="far fa-file-alt me-2"></i>Pages</a>
