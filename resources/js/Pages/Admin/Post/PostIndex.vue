@@ -1,11 +1,27 @@
 <script setup>
+import { useForm, usePage } from '@inertiajs/vue3';
+import { computed } from 'vue';
+
 
 const props = defineProps({
-    posts:{
+    posts: {
         type: Array,
         required: true
     }
 })
+
+const page = usePage();
+const PostdelForm = useForm({});
+const DeleteCategory = (id) => {
+    if (confirm('Are you sure you want to delete this post?')) {
+        PostdelForm.delete(`/admin/post/${id}`, {
+            preserveScroll: true,
+        })
+    }
+
+}
+
+const successMessage = computed(() => page.props.flash?.success || '')
 
 </script>
 
@@ -17,9 +33,9 @@ const props = defineProps({
 
     <div class="container-fluid pt-4 px-4">
         <div class="bg-light text-center rounded p-4">
-            <!-- <div v-if="successMessage" class="alert alert-success mt-3 mb-3">
+            <div v-if="successMessage" class="alert alert-success mt-3 mb-3">
                 {{ successMessage }}
-            </div> -->
+            </div>
 
             <div class="d-flex align-items-center justify-content-between mb-4">
                 <h6 class="mb-0">All Posts</h6>
@@ -45,8 +61,10 @@ const props = defineProps({
                                 <img :src="'/' + post.image" alt="" height="70" width="70" class="rounded-circle">
                             </td>
                             <td>
-                                <Link class="btn btn-sm btn-primary me-2" :href="`/admin/post/${post.id}/edit`">Edit</Link>
-                                <Link class="btn btn-sm btn-danger" @click.prevent="DeleteCategory(post.id)">Delete</Link>
+                                <Link class="btn btn-sm btn-primary me-2" :href="`/admin/post/${post.id}/edit`">Edit
+                                </Link>
+                                <Link class="btn btn-sm btn-danger" @click.prevent="DeleteCategory(post.id)">Delete
+                                </Link>
                             </td>
                         </tr>
                     </tbody>

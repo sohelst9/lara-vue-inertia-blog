@@ -7,6 +7,7 @@ use App\Models\category;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Inertia\Inertia;
 
@@ -35,16 +36,15 @@ class PostController extends Controller
     {
         $request->validate([
             'title' => 'required',
-            'category' => 'required',
+            'selectedCategory' => 'required',
             'sub_title' => 'required',
             'description' => 'required',
             'image' => 'required|mimes:png,jpg,jpeg,webp',
         ]);
 
-        dd($request->all());
         $post = new Post();
         $post->user_id = Auth::user()->id;
-        $post->category_id = $request->category;
+        $post->category_id = $request->selectedCategory;
         $post->title = $request->title;
         $post->slug = Str::slug($request->title);
         $post->sub_title = $request->sub_title;
@@ -68,7 +68,11 @@ class PostController extends Controller
     {
         $post = Post::find($id);
         $category = category::latest()->get();
-        return view('admin.post.edit', compact('post'));
+        return Inertia::render('Admin/Post/PostEdit', [
+            'SinglePost' => $post,
+            'allCategory' => $category,
+        ]);
+        
     }
 
     //-- update 
@@ -76,17 +80,15 @@ class PostController extends Controller
     {
         $request->validate([
             'title' => 'required',
-            'category' => 'required',
+            'selectedCategory' => 'required',
             'sub_title' => 'required',
             'description' => 'required',
             'image' => 'nullable|mimes:png,jpg,jpeg,webp',
         ]);
 
         $post = Post::find($id);
-
-        $post = new Post();
         $post->user_id = $post->user_id;
-        $post->category_id = $request->category;
+        $post->category_id = $request->selectedCategory;
         $post->title = $request->title;
         $post->slug = Str::slug($request->title);
         $post->sub_title = $request->sub_title;

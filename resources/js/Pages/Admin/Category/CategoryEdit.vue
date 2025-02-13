@@ -43,7 +43,7 @@ const updateCategory = () => {
                 {{ errorMessage }}
             </div>
             <div class="d-flex align-items-center justify-content-between mb-4">
-                <h5 class="mb-0 text-primary fw-bold">Create New Category</h5>
+                <h5 class="mb-0 text-primary fw-bold">Edit Category</h5>
                 <Link href="/admin/category" class="btn btn-outline-primary btn-sm">
                 <i class="bi bi-arrow-left me-1"></i>Back
                 </Link>

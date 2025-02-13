@@ -1,34 +1,37 @@
 <script setup>
 import { useForm } from '@inertiajs/vue3';
+import { ref } from 'vue';
 
 
 const props = defineProps({
     allCategory: {
         type: Array,
         required: true
+    },
+    SinglePost: {
+        type: Object,
+        required: true
     }
 })
 
 const postData = useForm({
-    selectedCategory: '',
-    title: '',
-    sub_title: '',
-    description: '',
+    selectedCategory: props.SinglePost.category_id,
+    title: props.SinglePost.title,
+    sub_title: props.SinglePost.sub_title,
+    description: props.SinglePost.description,
     image: null,
-    meta_title: '',
-    meta_description: '',
-    meta_keywords: '',
+    meta_title: props.SinglePost.meta_title,
+    meta_description: props.SinglePost.meta_description,
+    meta_keywords: props.SinglePost.meta_keywords,
+    _method: 'PUT',
 
 })
 
+const imagePreview = ref(props.SinglePost.image ? `/${props.SinglePost.image}` : null)
 
-const Postsubmit = () => {
-    postData.post('/admin/post', {
-        forceFormData: true,
-        onSuccess: () => {
-            console.log('success')
-            postData.reset()
-        }
+const PostUpdate = () => {
+    postData.post(`/admin/post/${props.SinglePost.id}`, {
+        preserveScroll: true
     })
 }
 </script>
@@ -48,7 +51,7 @@ const Postsubmit = () => {
                 </Link>
             </div>
 
-            <form @submit.prevent="Postsubmit">
+            <form @submit.prevent="PostUpdate">
                 <div class="row g-3">
                     <div class="col-md-12">
                         <label for="title" class="form-label">Title</label>
@@ -75,12 +78,16 @@ const Postsubmit = () => {
                         <label for="category" class="form-label">Category</label>
                         <div class="input-group">
                             <span class="input-group-text"><i class="bi bi-tag"></i></span>
-                            <select name="category" id="category" class="form-control" v-model="postData.selectedCategory">
+                            <select name="category" id="category" class="form-control"
+                                v-model="postData.selectedCategory">
                                 <option value="">-select-</option>
-                                <option :value="category.id" v-for="category in allCategory" :key="category.id">{{ category.name }}</option>
+                                <option :value="category.id" v-for="category in allCategory" :key="category.id"
+                                    :selected="postData.selectedCategory == category.id">{{
+                                        category.name }}</option>
                             </select>
                         </div>
-                        <div class="mt-2 text-danger" v-if="postData.errors.selectedCategory">{{ postData.errors.selectedCategory }}
+                        <div class="mt-2 text-danger" v-if="postData.errors.selectedCategory">{{
+                            postData.errors.selectedCategory }}
                         </div>
                     </div>
 
@@ -97,6 +104,9 @@ const Postsubmit = () => {
                         <input type="file" class="form-control" id="image"
                             @input="postData.image = $event.target.files[0]" accept="image/*">
                         <div class="mt-2 text-danger" v-if="postData.errors.image">{{ postData.errors.image }}</div>
+                        <div v-if="imagePreview">
+                            <img :src="imagePreview" alt="" height="120" class="mt-2 rounded">
+                        </div>
                     </div>
 
                     <div class="col-md-4">
