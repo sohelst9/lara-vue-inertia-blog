@@ -6,11 +6,16 @@ const props = defineProps({
     allCategory: {
         type: Array,
         required: true
+    },
+    alltag: {
+        type: Array,
+        required: true
     }
 })
 
 const postData = useForm({
     selectedCategory: '',
+    selectedTag: [],
     title: '',
     sub_title: '',
     description: '',
@@ -75,12 +80,31 @@ const Postsubmit = () => {
                         <label for="category" class="form-label">Category</label>
                         <div class="input-group">
                             <span class="input-group-text"><i class="bi bi-tag"></i></span>
-                            <select name="category" id="category" class="form-control" v-model="postData.selectedCategory">
+                            <select id="category" class="form-control"
+                                v-model="postData.selectedCategory">
                                 <option value="">-select-</option>
-                                <option :value="category.id" v-for="category in allCategory" :key="category.id">{{ category.name }}</option>
+                                <option :value="category.id" v-for="category in allCategory" :key="category.id">{{
+                                    category.name }}</option>
                             </select>
                         </div>
-                        <div class="mt-2 text-danger" v-if="postData.errors.selectedCategory">{{ postData.errors.selectedCategory }}
+                        <div class="mt-2 text-danger" v-if="postData.errors.selectedCategory">{{
+                            postData.errors.selectedCategory }}
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <label for="tag" class="form-label">Tag</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-tag"></i></span>
+                            <select id="tag" class="form-control"
+                                v-model="postData.selectedTag" multiple>
+                                <option value="">-select-</option>
+                                <option :value="tag.id" v-for="tag in alltag" :key="tag.id">{{
+                                    tag.name }}</option>
+                            </select>
+                        </div>
+                        <div class="mt-2 text-danger" v-if="postData.errors.selectedTag">{{
+                            postData.errors.selectedTag }}
                         </div>
                     </div>
 

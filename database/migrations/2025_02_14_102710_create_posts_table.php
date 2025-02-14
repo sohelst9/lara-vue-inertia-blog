@@ -24,6 +24,10 @@ return new class extends Migration
             $table->string('meta_title')->nullable();
             $table->string('meta_description')->nullable();
             $table->string('meta_keywords')->nullable();
+            $table->bigInteger('total_view')->default(0);
+            $table->tinyInteger('is_best')->default(0);
+            $table->tinyInteger('is_featured')->default(0);
+            $table->tinyInteger('is_popular')->default(0);
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->timestamps();

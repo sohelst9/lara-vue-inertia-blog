@@ -34,7 +34,7 @@ const updateCategory = () => {
 <template>
 
     <Head>
-        <title>Create Category | Admin</title>
+        <title>Edit Category | Admin</title>
     </Head>
 
     <div class="container-fluid pt-4 px-4">

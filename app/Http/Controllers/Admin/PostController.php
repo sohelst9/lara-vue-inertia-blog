@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\category;
 use App\Models\Post;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -16,7 +17,7 @@ class PostController extends Controller
     //-index
     public function index()
     {
-        $posts = Post::latest()->get();
+        $posts = Post::with('category', 'tags')->latest()->get();
         return Inertia::render('Admin/Post/PostIndex', [
             'posts' => $posts,
         ]);
@@ -26,8 +27,10 @@ class PostController extends Controller
     public function create()
     {
         $category = category::latest()->get();
+        $tags = Tag::latest()->get();
         return Inertia::render('Admin/Post/PostCreate', [
             'allCategory' => $category,
+            'alltag' => $tags,
         ]);
     }
 
@@ -60,6 +63,7 @@ class PostController extends Controller
         $post->meta_description = $request->meta_description;
         $post->meta_keywords = $request->meta_keywords;
         $post->save();
+        $post->tags()->attach($request->selectedTag);
         return redirect()->route('post.index')->with('success', 'Post created successfully');
     }
 

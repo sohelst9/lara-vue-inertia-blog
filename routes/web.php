@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashbaordController;
 use App\Http\Controllers\Admin\PostController;
+use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\PagesController;
@@ -28,5 +29,6 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::post('/logout', [DashbaordController::class, 'logout'])->name('admin.logout');
     Route::get('/dashboard', [DashbaordController::class, 'dashboard'])->name('admin.dashboard');
     Route::resource('category', CategoryController::class);
+    Route::resource('tag', TagController::class);
     Route::resource('post', PostController::class);
 });

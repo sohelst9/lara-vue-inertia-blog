@@ -48,6 +48,7 @@ const successMessage = computed(() => page.props.flash?.success || '')
                             <th>#</th>
                             <th scope="col">Tilte</th>
                             <th scope="col">Category</th>
+                            <th scope="col">Tags</th>
                             <th scope="col">Image</th>
                             <th scope="col">Action</th>
                         </tr>
@@ -56,7 +57,16 @@ const successMessage = computed(() => page.props.flash?.success || '')
                         <tr v-for="(post, index) in posts" :key="post.id">
                             <td>{{ index + 1 }}</td>
                             <td>{{ post.title }}</td>
-                            <td>{{ post.category_id }}</td>
+                            <td>{{ post.category ? post.category.name : 'No Category' }}</td>
+                            <td>
+                                <span v-if="post.tags && post.tags.length > 0">
+                                    <span v-for="(tag, tagIndex) in post.tags" :key="tagIndex"
+                                        class="badge bg-secondary me-1">
+                                        {{ tag.name }}
+                                    </span>
+                                </span>
+                                <span v-else>No Tags</span>
+                            </td>
                             <td>
                                 <img :src="'/' + post.image" alt="" height="70" width="70" class="rounded-circle">
                             </td>
