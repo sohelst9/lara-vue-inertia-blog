@@ -56,7 +56,7 @@ const successMessage = computed(() => page.props.flash?.success || '')
                     <tbody>
                         <tr v-for="(post, index) in posts" :key="post.id">
                             <td>{{ index + 1 }}</td>
-                            <td>{{ post.title }}</td>
+                            <td>{{ post.title.length > 15 ? post.title.slice(0, 15) + '..' : post.title }}</td>
                             <td>{{ post.category ? post.category.name : 'No Category' }}</td>
                             <td>
                                 <span v-if="post.tags && post.tags.length > 0">

@@ -37,6 +37,7 @@ class PostController extends Controller
     //--store
     public function store(Request $request)
     {
+        // dd($request->all());
         $request->validate([
             'title' => 'required',
             'selectedCategory' => 'required',
@@ -62,6 +63,11 @@ class PostController extends Controller
         $post->meta_title = $request->meta_title;
         $post->meta_description = $request->meta_description;
         $post->meta_keywords = $request->meta_keywords;
+        $post->is_banner = $request->is_banner;
+        $post->is_best = $request->is_best;
+        $post->is_featured = $request->is_featured;
+        $post->is_popular = $request->is_popular;
+
         $post->save();
         $post->tags()->attach($request->selectedTag);
         return redirect()->route('post.index')->with('success', 'Post created successfully');
@@ -111,6 +117,10 @@ class PostController extends Controller
         $post->meta_title = $request->meta_title;
         $post->meta_description = $request->meta_description;
         $post->meta_keywords = $request->meta_keywords;
+        $post->is_banner = $request->is_banner;
+        $post->is_best = $request->is_best;
+        $post->is_featured = $request->is_featured;
+        $post->is_popular = $request->is_popular;
         $post->save();
         return redirect()->route('post.index')->with('success', 'Post Updated successfully');
     }

@@ -4,6 +4,10 @@ const props = defineProps({
     trendingPost: {
         type: Object,
         required: true
+    },
+    featuredPosts: {
+        type: Array,
+        required: true
     }
 })
 
@@ -14,32 +18,32 @@ const props = defineProps({
         <div class="container">
             <div class="row g-5">
                 <!-- Featured Post -->
-                <div class="col-lg-4">
+                <div class="col-lg-4" v-if="trendingPost">
                     <div class="post-entry-lg bg-white rounded-3 shadow-sm hover-effect">
-                        <a href="blog-details.html" class="d-block overflow-hidden rounded-top-3">
-                            <img :src="trendingPost.blogimage" alt="Featured post" class="img-fluid post-img">
+                        <a href="" class="d-block overflow-hidden rounded-top-3">
+                            <img :src="trendingPost.data.image" alt="Featured post"
+                                class="img-fluid post-img">
                         </a>
                         <div class="p-4">
                             <div class="post-meta mb-2">
-                                <span class="category-badge">Culture</span>
+                                <span class="category-badge">{{ trendingPost.data.category }}</span>
                                 <span class="mx-1 text-muted">•</span>
-                                <span class="text-muted small">Jul 5th '22</span>
+                                <span class="text-muted small">{{ trendingPost.data.created_at }}</span>
                             </div>
                             <h2 class="post-title mb-3">
-                                <a href="blog-details.html" class="text-decoration-none text-dark">
-                                    11 Work From Home Part-Time Jobs You Can Do Now
+                                <a href="" class="text-decoration-none text-dark">
+                                    {{ trendingPost.data.title }}
                                 </a>
                             </h2>
                             <p class="post-excerpt text-muted mb-4">
-                                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vero temporibus repudiandae,
-                                inventore pariatur numquam cumque possimus exercitationem?
+                                {{ trendingPost.data.sub_title }}
                             </p>
                             <div class="author d-flex align-items-center">
                                 <div class="author-img me-3">
-                                    <img :src="trendingPost.personimage" alt="author" class="rounded-circle">
+                                    <img :src="trendingPost.data.author_image" alt="author" class="rounded-circle">
                                 </div>
                                 <div class="author-name">
-                                    <h6 class="m-0 fw-bold">Cameron Williamson</h6>
+                                    <h6 class="m-0 fw-bold">{{ trendingPost.data.author }}</h6>
                                 </div>
                             </div>
                         </div>
@@ -50,24 +54,24 @@ const props = defineProps({
                 <div class="col-lg-8">
                     <div class="row g-4">
 
-                        <div class="col-md-8">
+                        <div class="col-md-8" v-if="featuredPosts">
                             <div class="row">
-                                <div class="col-lg-6">
+                                <div class="col-lg-6" v-for="featurdPost in featuredPosts" :key="featurdPost.id">
                                     <div class="grid-posts">
                                         <div class="post-entry mb-4 bg-white rounded-3 shadow-sm hover-effect">
-                                            <a href="blog-details.html" class="d-block overflow-hidden rounded-top-3">
-                                                <img :src="trendingPost.blogimage" alt="Post image"
-                                                    class="img-fluid post-img">
+                                            <a href="" class="d-block overflow-hidden rounded-top-3">
+                                                <img :src="featurdPost.image"
+                                                    alt="Post image" class="img-fluid post-img">
                                             </a>
                                             <div class="p-3">
                                                 <div class="post-meta mb-2">
-                                                    <span class="category-badge sport">Sport</span>
+                                                    <span class="category-badge sport">{{ featurdPost.category }}</span>
                                                     <span class="mx-1 text-muted">•</span>
-                                                    <span class="text-muted small">Jul 5th '22</span>
+                                                    <span class="text-muted small">{{ featurdPost.created_at }}</span>
                                                 </div>
                                                 <h3 class="post-title small-title">
-                                                    <a href="blog-details.html" class="text-decoration-none text-dark">
-                                                        Let's Get Back to Work, New York
+                                                    <a href="" class="text-decoration-none text-dark">
+                                                        {{ featurdPost.title }}
                                                     </a>
                                                 </h3>
                                             </div>
@@ -75,75 +79,7 @@ const props = defineProps({
 
                                     </div>
                                 </div>
-                                <div class="col-lg-6">
-                                    <div class="grid-posts">
-                                        <div class="post-entry mb-4 bg-white rounded-3 shadow-sm hover-effect">
-                                            <a href="blog-details.html" class="d-block overflow-hidden rounded-top-3">
-                                                <img :src="trendingPost.blogimage" alt="Post image"
-                                                    class="img-fluid post-img">
-                                            </a>
-                                            <div class="p-3">
-                                                <div class="post-meta mb-2">
-                                                    <span class="category-badge business">Business</span>
-                                                    <span class="mx-1 text-muted">•</span>
-                                                    <span class="text-muted small">Jul 5th '22</span>
-                                                </div>
-                                                <h3 class="post-title small-title">
-                                                    <a href="blog-details.html" class="text-decoration-none text-dark">
-                                                        6 Easy Steps To Create Your Own Cute Merch
-                                                    </a>
-                                                </h3>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="grid-posts">
-                                        <div class="post-entry mb-4 bg-white rounded-3 shadow-sm hover-effect">
-                                            <a href="blog-details.html" class="d-block overflow-hidden rounded-top-3">
-                                                <img :src="trendingPost.blogimage" alt="Post image"
-                                                    class="img-fluid post-img">
-                                            </a>
-                                            <div class="p-3">
-                                                <div class="post-meta mb-2">
-                                                    <span class="category-badge business">Business</span>
-                                                    <span class="mx-1 text-muted">•</span>
-                                                    <span class="text-muted small">Jul 5th '22</span>
-                                                </div>
-                                                <h3 class="post-title small-title">
-                                                    <a href="blog-details.html" class="text-decoration-none text-dark">
-                                                        6 Easy Steps To Create Your Own Cute Merch
-                                                    </a>
-                                                </h3>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="grid-posts">
-                                        <div class="post-entry mb-4 bg-white rounded-3 shadow-sm hover-effect">
-                                            <a href="blog-details.html" class="d-block overflow-hidden rounded-top-3">
-                                                <img :src="trendingPost.blogimage" alt="Post image"
-                                                    class="img-fluid post-img">
-                                            </a>
-                                            <div class="p-3">
-                                                <div class="post-meta mb-2">
-                                                    <span class="category-badge business">Business</span>
-                                                    <span class="mx-1 text-muted">•</span>
-                                                    <span class="text-muted small">Jul 5th '22</span>
-                                                </div>
-                                                <h3 class="post-title small-title">
-                                                    <a href="blog-details.html" class="text-decoration-none text-dark">
-                                                        6 Easy Steps To Create Your Own Cute Merch
-                                                    </a>
-                                                </h3>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </div>
+                         
                             </div>
                         </div>
 

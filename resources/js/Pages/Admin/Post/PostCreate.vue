@@ -23,6 +23,11 @@ const postData = useForm({
     meta_title: '',
     meta_description: '',
     meta_keywords: '',
+    is_banner: '',
+    is_best : '',
+    is_featured: '',
+    is_popular: '',
+
 
 })
 
@@ -80,8 +85,7 @@ const Postsubmit = () => {
                         <label for="category" class="form-label">Category</label>
                         <div class="input-group">
                             <span class="input-group-text"><i class="bi bi-tag"></i></span>
-                            <select id="category" class="form-control"
-                                v-model="postData.selectedCategory">
+                            <select id="category" class="form-control" v-model="postData.selectedCategory">
                                 <option value="">-select-</option>
                                 <option :value="category.id" v-for="category in allCategory" :key="category.id">{{
                                     category.name }}</option>
@@ -96,8 +100,7 @@ const Postsubmit = () => {
                         <label for="tag" class="form-label">Tag</label>
                         <div class="input-group">
                             <span class="input-group-text"><i class="bi bi-tag"></i></span>
-                            <select id="tag" class="form-control"
-                                v-model="postData.selectedTag" multiple>
+                            <select id="tag" class="form-control" v-model="postData.selectedTag" multiple>
                                 <option value="">-select-</option>
                                 <option :value="tag.id" v-for="tag in alltag" :key="tag.id">{{
                                     tag.name }}</option>
@@ -113,7 +116,7 @@ const Postsubmit = () => {
                         <textarea class="form-control" id="description" rows="4" placeholder="Enter post description"
                             v-model="postData.description"></textarea>
                         <div class="mt-2 text-danger" v-if="postData.errors.description">{{ postData.errors.description
-                            }}</div>
+                        }}</div>
                     </div>
 
                     <div class="col-12">
@@ -140,6 +143,32 @@ const Postsubmit = () => {
                         <textarea class="form-control" id="meta_description" rows="3"
                             v-model="postData.meta_description" placeholder="Enter meta description"></textarea>
                     </div>
+
+                    <div class="col-md-12">
+                        <label class="form-label">Post Options</label>
+                        <div class="d-flex flex-wrap gap-3">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="is_banner"
+                                    v-model="postData.is_banner">
+                                <label class="form-check-label" for="is_banner">Is Banner</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="is_featured"
+                                    v-model="postData.is_featured">
+                                <label class="form-check-label" for="is_featured">Is Featured</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="is_best" v-model="postData.is_best">
+                                <label class="form-check-label" for="is_best">Is Best</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="is_popular"
+                                    v-model="postData.is_popular">
+                                <label class="form-check-label" for="is_popular">Is Popular</label>
+                            </div>
+                        </div>
+                    </div>
+
 
                     <div class="col-12">
                         <button type="submit" class="btn btn-primary">

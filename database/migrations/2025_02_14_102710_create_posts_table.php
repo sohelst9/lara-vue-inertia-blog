@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('meta_description')->nullable();
             $table->string('meta_keywords')->nullable();
             $table->bigInteger('total_view')->default(0);
+            $table->tinyInteger('is_banner')->default(0);
             $table->tinyInteger('is_best')->default(0);
             $table->tinyInteger('is_featured')->default(0);
             $table->tinyInteger('is_popular')->default(0);

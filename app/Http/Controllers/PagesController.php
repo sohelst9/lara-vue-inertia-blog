@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\PostResource;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -14,10 +15,12 @@ class PagesController extends Controller
 
         // Fetch dynamic data for the slider
         
-        $sliderData = Post::take(4)->get();
+        $sliderData = Post::where('is_banner', 1)->take(4)->get();
 
         //-- trending first post
-        $trendingPost = Post::first();
+        $trendingPost = Post::where('is_best', 1)->with('category')->first();
+        //-- featured posts
+        $featuredPosts =PostResource::collection( Post::where('is_featured', 1)->with('category')->take(8)->get());
 
         $categoryBasedPosts = [
             [
@@ -146,8 +149,9 @@ class PagesController extends Controller
 
         return Inertia::render('Home', [
             'sliderData' => $sliderData,
-            'trendingPost' => $trendingPost,
+            'trendingPost' => new PostResource($trendingPost),
             'categoryBasedPosts' => $categoryBasedPosts,
+            'featuredPosts' => $featuredPosts,
         ]);
     }
 

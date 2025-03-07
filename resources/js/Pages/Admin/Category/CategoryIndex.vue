@@ -53,10 +53,11 @@ const successMessage = computed(() => page.props.flash?.success || '');
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="(category, index) in categories" :key="category.id">
+                        <tr v-for="(category, index) in categories" :key="category.id" class="text-center">
                             <td>{{ index + 1 }}</td>
                             <td>{{ category.name }}</td>
-                            <td>{{ category.description }}</td>
+                            <td>{{ category.description.length > 30 ? category.description.slice(0, 30) + '...' : category.description }}</td>
+
                             <td>
                                 <img :src="'/' + category.image" alt="" height="70" width="70" class="rounded-circle">
                             </td>

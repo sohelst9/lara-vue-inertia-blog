@@ -8,7 +8,7 @@
                         <div class="content-overlay">
                             <div class="caption">
                                 <h5>{{ slide.title }}</h5>
-                                <p>{{ slide.description }}</p>
+                                <p>{{ slide.sub_title }}</p>
                                 <a :href="slide.link" class="btn">Explore</a>
                             </div>
                         </div>

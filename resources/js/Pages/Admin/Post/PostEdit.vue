@@ -23,6 +23,11 @@ const postData = useForm({
     meta_title: props.SinglePost.meta_title,
     meta_description: props.SinglePost.meta_description,
     meta_keywords: props.SinglePost.meta_keywords,
+    is_banner: Boolean(props.SinglePost.is_banner),
+    is_best: Boolean(props.SinglePost.is_best),
+    is_featured: Boolean(props.SinglePost.is_featured),
+    is_popular: Boolean(props.SinglePost.is_popular),    
+
     _method: 'PUT',
 
 })
@@ -125,6 +130,32 @@ const PostUpdate = () => {
                         <label for="meta_description" class="form-label">Meta Description</label>
                         <textarea class="form-control" id="meta_description" rows="3"
                             v-model="postData.meta_description" placeholder="Enter meta description"></textarea>
+                    </div>
+
+
+                    <div class="col-md-12">
+                        <label class="form-label">Post Options</label>
+                        <div class="d-flex flex-wrap gap-3">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="is_banner"
+                                    v-model="postData.is_banner">
+                                <label class="form-check-label" for="is_banner">Is Banner</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="is_featured"
+                                    v-model="postData.is_featured">
+                                <label class="form-check-label" for="is_featured">Is Featured</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="is_best" v-model="postData.is_best">
+                                <label class="form-check-label" for="is_best">Is Best</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="is_popular"
+                                    v-model="postData.is_popular">
+                                <label class="form-check-label" for="is_popular">Is Popular</label>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="col-12">
