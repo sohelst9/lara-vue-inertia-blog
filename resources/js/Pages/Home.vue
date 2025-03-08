@@ -21,7 +21,12 @@ const props = defineProps({
     featuredPosts: {
         type: Array,
         required: true
+    },
+    trendingrightPosts: {
+        type: Array,
+        required: true
     }
+
 
 });
 
@@ -41,7 +46,7 @@ onMounted(() => {
         <meta head-key="description" name="description" content="Home page meta description" />
     </Head>
     <Slider :sliderData="sliderData" />
-    <Trending :trendingPost="trendingPost" :featuredPosts="featuredPosts" />
+    <Trending :trendingPost="trendingPost" :featuredPosts="featuredPosts" :trendingrightPosts="trendingrightPosts" />
     <CategoryBasedPost :categoryBasedPosts="categoryBasedPosts" />
 
 

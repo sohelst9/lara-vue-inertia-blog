@@ -8,8 +8,14 @@ const props = defineProps({
     featuredPosts: {
         type: Array,
         required: true
+    }, 
+    trendingrightPosts: {
+        type: Array,
+        required: true
     }
 })
+
+console.log('Trending component featuredPosts:', props.featuredPosts);
 
 </script>
 
@@ -71,7 +77,7 @@ const props = defineProps({
                                                 </div>
                                                 <h3 class="post-title small-title">
                                                     <a href="" class="text-decoration-none text-dark">
-                                                        {{ featurdPost.title }}
+                                                        {{ featurdPost.short_title }}
                                                     </a>
                                                 </h3>
                                             </div>
@@ -89,55 +95,21 @@ const props = defineProps({
                                     <h3 class="section-title mb-4">Trending</h3>
                                     <div class="trending-posts">
 
-                                        <div class="trending-post-item mb-4 pb-4 border-bottom">
-                                            <a href="blog-details.html" class="text-decoration-none">
+                                        <div class="trending-post-item mb-4 pb-4 border-bottom" v-for="(trendingrightPost, index) in trendingrightPosts" :key="trendingrightPost.id">
+                                            <a href="" class="text-decoration-none">
                                                 <div class="d-flex">
-                                                    <span class="number me-3">1</span>
+                                                    <span class="number me-3">{{ index+1 }}</span>
                                                     <div>
-                                                        <h4 class="trending-title mb-2">The Best Homemade Masks for Face
+                                                        <h4 class="trending-title mb-2">
+                                                            {{ trendingrightPost.short_title }}
                                                         </h4>
-                                                        <span class="author text-muted small">Jane Cooper</span>
+                                                        <span class="author text-muted small">{{ trendingrightPost.author }}</span>
                                                     </div>
                                                 </div>
                                             </a>
                                         </div>
 
-                                        <div class="trending-post-item mb-4 pb-4 border-bottom">
-                                            <a href="blog-details.html" class="text-decoration-none">
-                                                <div class="d-flex">
-                                                    <span class="number me-3">2</span>
-                                                    <div>
-                                                        <h4 class="trending-title mb-2">The Best Homemade Masks for Face
-                                                        </h4>
-                                                        <span class="author text-muted small">Jane Cooper</span>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </div>
-                                        <div class="trending-post-item mb-4 pb-4 border-bottom">
-                                            <a href="blog-details.html" class="text-decoration-none">
-                                                <div class="d-flex">
-                                                    <span class="number me-3">3</span>
-                                                    <div>
-                                                        <h4 class="trending-title mb-2">The Best Homemade Masks for Face
-                                                        </h4>
-                                                        <span class="author text-muted small">Jane Cooper</span>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </div>
-                                        <div class="trending-post-item mb-4 pb-4 border-bottom">
-                                            <a href="blog-details.html" class="text-decoration-none">
-                                                <div class="d-flex">
-                                                    <span class="number me-3">4</span>
-                                                    <div>
-                                                        <h4 class="trending-title mb-2">The Best Homemade Masks for Face
-                                                        </h4>
-                                                        <span class="author text-muted small">Jane Cooper</span>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </div>
+                                     
 
                                     </div>
                                 </div>
@@ -188,6 +160,7 @@ const props = defineProps({
 .category-badge.sport {
     background-color: #ffd6d6;
     color: #dc3545;
+    font-size: 10px;
 }
 
 .category-badge.business {

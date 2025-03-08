@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\PostResource;
+use App\Models\category;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -14,144 +15,40 @@ class PagesController extends Controller
     {
 
         // Fetch dynamic data for the slider
-        
-        $sliderData = Post::where('is_banner', 1)->take(4)->get();
+
+        $sliderData = Post::where('is_banner', 1)->take(4)->latest()->get();
 
         //-- trending first post
-        $trendingPost = Post::where('is_best', 1)->with('category')->first();
+        $trendingPost = Post::where('is_best', 1)->with('category')->latest()->first();
         //-- featured posts
-        $featuredPosts =PostResource::collection( Post::where('is_featured', 1)->with('category')->take(8)->get());
+        // $featuredPosts =PostResource::collection( Post::where('is_featured', 1)->with('category')->take(8)->get());
+        $featuredPostsCollection = PostResource::collection(Post::where('is_featured', 1)->with('category')->take(4)->latest()->get());
+        $featuredPosts = $featuredPostsCollection->toArray(request());
 
-        $categoryBasedPosts = [
-            [
-                'category' => 'Fashion',
-                'slug' => 'fashion',
-                'posts' => [
-                    [
-                        'image' => asset('assets/img/post-landscape-1.jpg'),
-                        'title' => 'Top 10 Fashion Trends for 2025',
-                        'description' => 'Discover the latest fashion trends and stay ahead of the game...',
-                        'link' => '/',
-                    ],
-                    [
-                        'image' => asset('assets/img/post-landscape-1.jpg'),
-                        'title' => 'How to Style Your Winter Outfits',
-                        'description' => 'Winter is coming! Learn how to style your outfits perfectly...',
-                        'link' => '/',
-                    ],
-                    [
-                        'image' => asset('assets/img/post-landscape-1.jpg'),
-                        'title' => 'How to Style Your Winter Outfits',
-                        'description' => 'Winter is coming! Learn how to style your outfits perfectly...',
-                        'link' => '/',
-                    ],
-                    [
-                        'image' => asset('assets/img/post-landscape-1.jpg'),
-                        'title' => 'How to Style Your Winter Outfits',
-                        'description' => 'Winter is coming! Learn how to style your outfits perfectly...',
-                        'link' => '/',
-                    ],
-                ],
-            ],
-            [
-                'category' => 'Technology',
-                'slug' => 'technology',
-                'posts' => [
-                    [
-                        'image' => asset('assets/img/post-landscape-1.jpg'),
-                        'title' => 'AI Revolution: What to Expect in the Next 5 Years',
-                        'description' => 'Artificial Intelligence is evolving rapidly. Here’s what’s next...',
-                        'link' => '/',
-                    ],
-                    [
-                        'image' => asset('assets/img/post-landscape-1.jpg'),
-                        'title' => 'Best Laptops for Coding in 2025',
-                        'description' => 'Looking for the best laptop for programming? Here’s our top picks...',
-                        'link' => '/',
-                    ],
-                    [
-                        'image' => asset('assets/img/post-landscape-1.jpg'),
-                        'title' => 'Best Laptops for Coding in 2025',
-                        'description' => 'Looking for the best laptop for programming? Here’s our top picks...',
-                        'link' => '/',
-                    ],
-                    [
-                        'image' => asset('assets/img/post-landscape-1.jpg'),
-                        'title' => 'Best Laptops for Coding in 2025',
-                        'description' => 'Looking for the best laptop for programming? Here’s our top picks...',
-                        'link' => '/',
-                    ],
-                    [
-                        'image' => asset('assets/img/post-landscape-1.jpg'),
-                        'title' => 'Best Laptops for Coding in 2025',
-                        'description' => 'Looking for the best laptop for programming? Here’s our top picks...',
-                        'link' => '/',
-                    ],
-                    [
-                        'image' => asset('assets/img/post-landscape-1.jpg'),
-                        'title' => 'Best Laptops for Coding in 2025',
-                        'description' => 'Looking for the best laptop for programming? Here’s our top picks...',
-                        'link' => '/',
-                    ],
-                    [
-                        'image' => asset('assets/img/post-landscape-1.jpg'),
-                        'title' => 'Best Laptops for Coding in 2025',
-                        'description' => 'Looking for the best laptop for programming? Here’s our top picks...',
-                        'link' => '/',
-                    ],
-                ],
-            ],
-            [
-                'category' => 'Health & Fitness',
-                'slug' => 'health-fitness',
-                'posts' => [
-                    [
-                        'image' => asset('assets/img/post-landscape-1.jpg'),
-                        'title' => '5 Morning Habits for a Healthy Lifestyle',
-                        'description' => 'Start your day with these healthy habits and feel the difference...',
-                        'link' => '/',
-                    ],
-                    [
-                        'image' => asset('assets/img/post-landscape-1.jpg'),
-                        'title' => 'The Best Diet Plan for Weight Loss',
-                        'description' => 'Want to lose weight? Here’s a scientifically proven diet plan...',
-                        'link' => '/',
-                    ],
-                    [
-                        'image' => asset('assets/img/post-landscape-1.jpg'),
-                        'title' => 'The Best Diet Plan for Weight Loss',
-                        'description' => 'Want to lose weight? Here’s a scientifically proven diet plan...',
-                        'link' => '/',
-                    ],
-                    [
-                        'image' => asset('assets/img/post-landscape-1.jpg'),
-                        'title' => 'The Best Diet Plan for Weight Loss',
-                        'description' => 'Want to lose weight? Here’s a scientifically proven diet plan...',
-                        'link' => '/',
-                    ],
-                    [
-                        'image' => asset('assets/img/post-landscape-1.jpg'),
-                        'title' => 'The Best Diet Plan for Weight Loss',
-                        'description' => 'Want to lose weight? Here’s a scientifically proven diet plan...',
-                        'link' => '/',
-                    ],
-                    [
-                        'image' => asset('assets/img/post-landscape-1.jpg'),
-                        'title' => 'The Best Diet Plan for Weight Loss',
-                        'description' => 'Want to lose weight? Here’s a scientifically proven diet plan...',
-                        'link' => '/',
-                    ],
-                ],
-            ],
-        ];
+        //-- trending posts
+        $trendingPostsCollection = PostResource::collection(Post::where('is_popular', 1)->with('category')->take(5)->latest()->get());
+        $trendingrightPosts = $trendingPostsCollection->toArray(request());
 
-// return $categoryBasedPosts;
+        //-- category based posts
+        $categories = category::with('posts')->get()->filter(function ($category) {
+            return $category->posts->count() > 0;
+        });
+        $categoryBasedPosts = $categories->map(function ($category){
+            return [
+                'category' => $category->name,
+                'slug' => $category->slug,
+                'posts' => PostResource::collection($category->posts->take(4))
+            ];
+        });
+
+        // return $categoryBasedPosts;
 
         return Inertia::render('Home', [
             'sliderData' => $sliderData,
             'trendingPost' => new PostResource($trendingPost),
             'categoryBasedPosts' => $categoryBasedPosts,
             'featuredPosts' => $featuredPosts,
+            'trendingrightPosts' => $trendingrightPosts,
         ]);
     }
 
@@ -172,7 +69,7 @@ class PagesController extends Controller
             'commentimage' => asset('assets/img/blog/comments-1.jpg'),
             'recent' => asset('assets/img/blog/blog-recent-1.jpg'),
         ];
-        return Inertia::render('Blog',[
+        return Inertia::render('Blog', [
             'allImage' => $allImage,
         ]);
     }

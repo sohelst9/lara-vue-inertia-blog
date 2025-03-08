@@ -6,6 +6,7 @@ const props = defineProps({
   }
 });
 
+console.log('categoryBasedPosts', props.categoryBasedPosts);
 </script>
 
 <template>
@@ -24,7 +25,7 @@ const props = defineProps({
       <div class="row">
         <div class="col-md-12">
           <div class="row">
-            <div class="col-lg-3" v-for="categoryPost in category.posts" :key="categoryPost.title">
+            <div class="col-lg-3" v-for="categoryPost in category.posts.data" :key="categoryPost.title">
               <div class="post-list border-bottom">
                 <Link href="blog-details.html"><img :src="categoryPost.image" :alt="categoryPost.title"
                   class="img-fluid"></Link>
@@ -33,7 +34,7 @@ const props = defineProps({
                     '22</span></div>
                 <h2 class="mb-2"><a href="blog-details.html">{{ categoryPost.title }}</a></h2>
                 <span class="author mb-3 d-block">Jenny Wilson</span>
-                <p class="mb-4 d-block">{{ categoryPost.description }}</p>
+                <p class="mb-4 d-block">{{ categoryPost.sub_title }}</p>
               </div>
             </div>
 
