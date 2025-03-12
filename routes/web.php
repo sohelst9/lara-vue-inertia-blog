@@ -6,12 +6,14 @@ use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Frontend\CategoryConroller;
 use App\Http\Controllers\PagesController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/', [PagesController::class, 'index'])->name('home');
 Route::get('/blogs', [PagesController::class, 'blogs'])->name('blogs');
+Route::get('/category/blogs/{slug}', [CategoryConroller::class, 'categoryBlogs'])->name('category.blogs');
 Route::get('/blog/{slug}', [PagesController::class, 'blog'])->name('blog');
 Route::get('/about', [PagesController::class, 'about'])->name('about');
 Route::get('/contact', [PagesController::class, 'contact'])->name('contact');

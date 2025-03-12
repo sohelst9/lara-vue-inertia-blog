@@ -16,7 +16,7 @@ console.log('categoryBasedPosts', props.categoryBasedPosts);
     <div class="container section-title" data-aos="fade-up">
       <div class="section-title-container d-flex align-items-center justify-content-between">
         <h2>{{ category.category }}</h2>
-        <p><a href="categories.html">See All {{ category.category }}</a></p>
+        <p><a href="#">See All {{ category.category }}</a></p>
       </div>
     </div><!-- End Section Title -->
 
@@ -27,13 +27,12 @@ console.log('categoryBasedPosts', props.categoryBasedPosts);
           <div class="row">
             <div class="col-lg-3" v-for="categoryPost in category.posts.data" :key="categoryPost.title">
               <div class="post-list border-bottom">
-                <Link href="blog-details.html"><img :src="categoryPost.image" :alt="categoryPost.title"
+                <Link href=""><img :src="categoryPost.image" :alt="categoryPost.title"
                   class="img-fluid"></Link>
                 <div class="post-meta"><span class="date">{{ category.category }}</span> <span class="mx-1">•</span>
-                  <span>Jul 5th
-                    '22</span></div>
-                <h2 class="mb-2"><a href="blog-details.html">{{ categoryPost.title }}</a></h2>
-                <span class="author mb-3 d-block">Jenny Wilson</span>
+                  <span>{{ categoryPost.created_at }}</span></div>
+                <h2 class="mb-2"><a href="">{{ categoryPost.title }}</a></h2>
+                <span class="author mb-3 d-block">{{ categoryPost.author }}</span>
                 <p class="mb-4 d-block">{{ categoryPost.sub_title }}</p>
               </div>
             </div>

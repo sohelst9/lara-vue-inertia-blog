@@ -70,7 +70,7 @@ const successMessage = computed(() => page.props.flash?.success || '')
                             <td>
                                 <img :src="'/' + post.image" alt="" height="70" width="70" class="rounded-circle">
                             </td>
-                            <td>
+                            <td class="d-flex align-items-center justify-content-center gap-2">
                                 <Link class="btn btn-sm btn-primary me-2" :href="`/admin/post/${post.id}/edit`">Edit
                                 </Link>
                                 <Link class="btn btn-sm btn-danger" @click.prevent="DeleteCategory(post.id)">Delete

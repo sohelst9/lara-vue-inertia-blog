@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Resources\PostResource;
 use App\Models\category;
 use App\Models\Post;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -63,14 +64,13 @@ class PagesController extends Controller
     //--blog
     public function blog($slug)
     {
-        $allImage = [
-            'blog1' => asset('assets/img/blog/blog-1.jpg'),
-            'insidepost' => asset('assets/img/blog/blog-inside-post.jpg'),
-            'commentimage' => asset('assets/img/blog/comments-1.jpg'),
-            'recent' => asset('assets/img/blog/blog-recent-1.jpg'),
-        ];
+        $blog = Post::with('tags')->where('slug', $slug)->first();
+        // return new PostResource($blog);
+        $recent_post_related_collection = PostResource::collection(Post::where('category_id', $blog->category_id)->where('id', '!=', $blog->id)->latest()->take(5)->get());
+        $recent_post_related = $recent_post_related_collection->toArray(request());
         return Inertia::render('Blog', [
-            'allImage' => $allImage,
+            'blog' => new PostResource($blog),
+            'recent_post_related' => $recent_post_related,
         ]);
     }
 

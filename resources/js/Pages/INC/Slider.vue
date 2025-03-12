@@ -9,7 +9,7 @@
                             <div class="caption">
                                 <h5>{{ slide.title }}</h5>
                                 <p>{{ slide.sub_title }}</p>
-                                <a :href="slide.link" class="btn">Explore</a>
+                                <Link :href="`/blog/${slide.slug}`" class="btn">Explore</Link>
                             </div>
                         </div>
                     </div>

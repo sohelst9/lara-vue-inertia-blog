@@ -11,6 +11,14 @@ const props = defineProps({
     SinglePost: {
         type: Object,
         required: true
+    },
+    alltag: {
+        type: Array,
+        required: true
+    },
+    selectedTag: {
+        type: Array,
+        required: true
     }
 })
 
@@ -26,7 +34,8 @@ const postData = useForm({
     is_banner: Boolean(props.SinglePost.is_banner),
     is_best: Boolean(props.SinglePost.is_best),
     is_featured: Boolean(props.SinglePost.is_featured),
-    is_popular: Boolean(props.SinglePost.is_popular),    
+    is_popular: Boolean(props.SinglePost.is_popular),
+    selectedTag: props.selectedTag,
 
     _method: 'PUT',
 
@@ -93,6 +102,17 @@ const PostUpdate = () => {
                         </div>
                         <div class="mt-2 text-danger" v-if="postData.errors.selectedCategory">{{
                             postData.errors.selectedCategory }}
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <label for="tag" class="form-label">Tag</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-tag"></i></span>
+                            <select name="tag" id="tag" class="form-control" multiple v-model="postData.selectedTag">
+                                <option value="">-select-</option>
+                                <option v-for="tag in alltag" :key="tag.id" :value="tag.id">{{ tag.name }}</option>
+                            </select>
                         </div>
                     </div>
 

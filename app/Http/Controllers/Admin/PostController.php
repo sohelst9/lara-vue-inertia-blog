@@ -78,9 +78,12 @@ class PostController extends Controller
     {
         $post = Post::find($id);
         $category = category::latest()->get();
+        $tags = Tag::latest()->get();
         return Inertia::render('Admin/Post/PostEdit', [
             'SinglePost' => $post,
             'allCategory' => $category,
+            'alltag' => $tags,
+            'selectedTag' => $post->tags->pluck('id')
         ]);
         
     }
@@ -122,6 +125,7 @@ class PostController extends Controller
         $post->is_featured = $request->is_featured;
         $post->is_popular = $request->is_popular;
         $post->save();
+        $post->tags()->sync($request->selectedTag);
         return redirect()->route('post.index')->with('success', 'Post Updated successfully');
     }
 
