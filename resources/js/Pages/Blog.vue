@@ -1,5 +1,4 @@
 <script setup>
-import { usePage } from '@inertiajs/vue3';
 
 const props = defineProps({
   blog: {
@@ -7,12 +6,12 @@ const props = defineProps({
     required: true
   },
   recent_post_related: {
-    type: Array,
+    type: Object,
     required: true
   },
 });
 
-console.log("Tags Data:", props.blog.data.tags);
+// console.log("Tags Data:", props.blog.data.tags);
 </script>
 
 <template>
@@ -128,7 +127,7 @@ console.log("Tags Data:", props.blog.data.tags);
             <h3 class="widget-title">Recent Posts</h3>
 
             <div class="post-list">
-              <div class="post-item" v-for="recent_blog in recent_post_related" :key="recent_blog.id">
+              <div class="post-item" v-for="recent_blog in recent_post_related.data" :key="recent_blog.id">
                 <img :src="recent_blog.image" :alt="recent_blog.title" class="post-thumbnail">
                 <div class="post-info">
                   <h4>

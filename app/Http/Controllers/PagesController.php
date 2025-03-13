@@ -66,8 +66,7 @@ class PagesController extends Controller
     {
         $blog = Post::with('tags')->where('slug', $slug)->first();
         // return new PostResource($blog);
-        $recent_post_related_collection = PostResource::collection(Post::where('category_id', $blog->category_id)->where('id', '!=', $blog->id)->latest()->take(5)->get());
-        $recent_post_related = $recent_post_related_collection->toArray(request());
+        $recent_post_related = PostResource::collection(Post::where('category_id', $blog->category_id)->where('id', '!=', $blog->id)->latest()->take(5)->get());
         return Inertia::render('Blog', [
             'blog' => new PostResource($blog),
             'recent_post_related' => $recent_post_related,

@@ -1,163 +1,196 @@
 <script setup>
+import { computed } from 'vue';
+import { router } from '@inertiajs/vue3';
+
 
 const props = defineProps({
-    category: {
-        type: Object,
-        required: true,
-    },
-    categoryPosts: {
-        type: Array,
-        required: true,
-    }, 
-    recentPosts: {
-        type: Array,
-        required: true,
-    },
-    tags: {
-        type: Array,
-        required: true,
-    },
+  category: {
+    type: Object,
+    required: true,
+  },
+  categoryPosts: {
+    type: Object,
+    required: true,
+  },
+  recentPosts: {
+    type: Object,
+    required: true,
+  },
+  tags: {
+    type: Array,
+    required: true,
+  },
 });
 
-// console.log('categoryPosts', props.categoryPosts);
+const changePage = (url) => {
+  router.visit(url); 
+  // console.log('url', url);
+};
+
+const filtereLinks = computed(() => {
+  let links = props.categoryPosts?.meta?.links || [];
+  let numberLink = links.filter(item=> !isNaN(item.label));
+  if(numberLink.length <= 7){
+    return numberLink;
+  }
+  let firstFivePage = numberLink.slice(0,5);
+  let lastTwoPage = numberLink.slice(-2);
+  return [...firstFivePage, {label: '...', url: null}, ...lastTwoPage];
+})
+
+console.log('categoryPosts', props.categoryPosts);
 </script>
 
 
 <template>
 
 
-    <Head>
-        <title> | {{ category.name }}</title>
-        <meta head-key="title" name="title" :content="category.meta_title">
-        <meta head-key="description" name="description" :content="category.meta_description ">
-        <meta head-key="keywords" name="keywords" :content="category.meta_keywords">
-    </Head>
-    <div>
-        <div class="page-title">
-            <div class="container">
-                <h1>Category Based blogs</h1>
-                <nav class="breadcrumbs">
-                    <ol>
-                        <li>
-                            <Link href="/">Home</Link>
-                        </li>
-                        <li class="current">{{ category.name }}</li>
-                    </ol>
-                </nav>
-            </div>
-        </div>
+  <Head>
+    <title> | {{ category.name }}</title>
+    <meta head-key="title" name="title" :content="category.meta_title">
+    <meta head-key="description" name="description" :content="category.meta_description">
+    <meta head-key="keywords" name="keywords" :content="category.meta_keywords">
+  </Head>
+  <div>
+    <div class="page-title">
+      <div class="container">
+        <h1>Category Based blogs</h1>
+        <nav class="breadcrumbs">
+          <ol>
+            <li>
+              <Link href="/">Home</Link>
+            </li>
+            <li>/</li>
+            <li class="current"><Link :href="`/category/blogs/${category.slug}`">{{ category.name }}</Link></li>
+          </ol>
+        </nav>
+      </div>
     </div>
+  </div>
 
-    <div class="container">
-        <div class="row">
+  <div class="container">
+    <div class="row">
 
-            <div class="col-lg-8">
+      <div class="col-lg-8">
 
-                <!-- Blog Posts Section -->
-                <section id="blog-posts" class="blog-posts section">
+        <!-- Blog Posts Section -->
+        <section id="blog-posts" class="blog-posts section">
 
-                    <div class="container">
-                        <div class="row gy-4">
+          <div class="container">
+            <div class="row gy-4">
 
-                            <div class="col-lg-6" v-for="post in categoryPosts" :key="post.id">
-                                <article class="position-relative h-100">
+              <div class="col-lg-6" v-for="post in categoryPosts.data" :key="post.id">
+                <article class="position-relative h-100">
 
-                                    <div class="post-img position-relative overflow-hidden">
-                                        <img :src="post.image" class="img-fluid" alt="">
-                                        <span class="post-date">{{ post.created_at }}</span>
-                                    </div>
+                  <div class="post-img position-relative overflow-hidden">
+                    <img :src="post.image" class="img-fluid" alt="">
+                    <span class="post-date">{{ post.created_at }}</span>
+                  </div>
 
-                                    <div class="post-content d-flex flex-column">
+                  <div class="post-content d-flex flex-column">
 
-                                        <h3 class="post-title">{{ post.short_title }}</h3>
+                    <h3 class="post-title">{{ post.short_title }}</h3>
 
-                                        <div class="meta d-flex align-items-center">
-                                            <div class="d-flex align-items-center">
-                                                <i class="bi bi-person"></i> <span class="ps-2">{{ post.author }}</span>
-                                            </div>
-                                        </div>
-
-                                        <p>
-                                            {{ post.sub_title }}
-                                        </p>
-
-                                        <hr>
-
-                                        <Link :href="`/blog/${post.slug}`" class="readmore stretched-link"><span>Read
-                                                More</span><i class="bi bi-arrow-right"></i></Link>
-
-                                    </div>
-
-                                </article>
-                            </div>
-                          
-
-                        </div>
+                    <div class="meta d-flex align-items-center">
+                      <div class="d-flex align-items-center">
+                        <i class="bi bi-person"></i> <span class="ps-2">{{ post.author }}</span>
+                      </div>
                     </div>
 
-                </section><!-- /Blog Posts Section -->
+                    <p>
+                      {{ post.sub_title }}
+                    </p>
 
-                <!-- Blog Pagination Section -->
-                <section id="blog-pagination" class="blog-pagination section">
+                    <hr>
 
-                    <div class="container">
-                        <div class="d-flex justify-content-center">
-                            <ul>
-                                <li><a href="#"><i class="bi bi-chevron-left"></i></a></li>
-                                <li><a href="#">1</a></li>
-                                <li><a href="#" class="active">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">4</a></li>
-                                <li>...</li>
-                                <li><a href="#">10</a></li>
-                                <li><a href="#"><i class="bi bi-chevron-right"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
+                    <Link :href="`/blog/${post.slug}`" class="readmore stretched-link"><span>Read
+                      More</span><i class="bi bi-arrow-right"></i></Link>
 
-                </section>
-                <!-- /Blog Pagination Section -->
+                  </div>
+
+                </article>
+              </div>
+
 
             </div>
+          </div>
 
-            <div class="col-lg-4 blogs_sidebar mt-5">
+        </section><!-- /Blog Posts Section -->
 
-                <div class="widgets-container">
-                    
-                    <!-- Recent Posts Widget -->
-                    <div class="recent-posts-widget widget-item">
+        <!-- Blog Pagination Section -->
+        <section id="blog-pagination" class="blog-pagination section" v-if="categoryPosts.meta?.last_page > 1">
 
-                        <h3 class="widget-title">Recent Posts</h3>
+          <div class="container">
+            <div class="d-flex justify-content-center">
+              <ul>
 
-                        <div class="post-item" v-for="recentPost in recentPosts" :key="recentPost.id">
-                            <img :src="recentPost.image" :alt="recentPost.title" class="flex-shrink-0">
-                            <div>
-                                <h4><Link :href="`/blog/${recentPost.slug}`">{{ recentPost.title }}</Link></h4>
-                                <time datetime="2020-01-01">{{ recentPost.created_at }}</time>
-                            </div>
-                        </div>
-                       
+                <li :class="{ disabled: !categoryPosts.links?.prev}">
+                  <a href="#" v-if="categoryPosts.links?.prev" @click.prevent="changePage(categoryPosts.links.prev)">
+                    <i class="bi bi-chevron-left"></i>
+                  </a>
+                  <a v-else>
+                    <i class="bi bi-chevron-left"></i>
+                  </a>
+                </li>
 
+                <li v-for="(link, index) in filtereLinks" :key="index" >
+                  <a href="#" :class="{ 'active': link.active, 'disabled' : !link.url}" v-if="link.url" @click.prevent="changePage(link.url)">{{ link.label }}</a>
+                  <a v-else>{{ link.label }}</a>
+                </li>
 
-
-                    </div><!--/Recent Posts Widget -->
-
-                    <!-- Tags Widget -->
-                    <div class="tags-widget widget-item">
-
-                        <h3 class="widget-title">Tags</h3>
-                        <ul>
-                            <li v-for="tag in tags" :key="tag.id"><a>{{ tag.name }}</a></li>
-                        </ul>
-
-                    </div><!--/Tags Widget -->
-
-                </div>
-
+                <li :class="{ 'disabled' : !categoryPosts.links?.next}">
+                  <a href="#" v-if="categoryPosts.links?.next" @click.prevent="changePage(categoryPosts.links.next)"><i class="bi bi-chevron-right"></i></a>
+                  <a v-else><i class="bi bi-chevron-right"></i></a>
+                </li>
+              </ul>
             </div>
+          </div>
+
+        </section>
+        <!-- /Blog Pagination Section -->
+
+      </div>
+
+      <div class="col-lg-4 blogs_sidebar mt-5">
+
+        <div class="widgets-container">
+
+          <!-- Recent Posts Widget -->
+          <div class="recent-posts-widget widget-item">
+
+            <h3 class="widget-title">Recent Posts</h3>
+
+            <div class="post-item" v-for="recentPost in recentPosts.data" :key="recentPost.id">
+              <img :src="recentPost.image" :alt="recentPost.title" class="flex-shrink-0">
+              <div>
+                <h4>
+                  <Link :href="`/blog/${recentPost.slug}`">{{ recentPost.title }}</Link>
+                </h4>
+                <time datetime="2020-01-01">{{ recentPost.created_at }}</time>
+              </div>
+            </div>
+
+
+
+
+          </div><!--/Recent Posts Widget -->
+
+          <!-- Tags Widget -->
+          <div class="tags-widget widget-item">
+
+            <h3 class="widget-title">Tags</h3>
+            <ul>
+              <li v-for="tag in tags" :key="tag.id"><a>{{ tag.name }}</a></li>
+            </ul>
+
+          </div><!--/Tags Widget -->
 
         </div>
+
+      </div>
+
     </div>
+  </div>
 </template>
 
 

@@ -19,15 +19,13 @@ class CategoryConroller extends Controller
         if (!$category) {
             return redirect()->route('home');
         }
-        $categoryPostCollection = PostResource::collection($category->posts()->latest()->get());
-        $categoryPosts = $categoryPostCollection->toArray(request());
+        $categoryPostCollection = PostResource::collection($category->posts()->latest()->paginate(6));
         //-- recent post --
-        $recentPostsCollection = PostResource::collection(Post::latest()->take(5)->get());
-        $recentPosts = $recentPostsCollection->toArray(request());
+        $recentPosts = PostResource::collection(Post::latest()->take(5)->get());
         $tags = Tag::latest()->take(16)->get();
         return Inertia::render('CategoryPosts', [
             'category' => $category,
-            'categoryPosts' => $categoryPosts,
+            'categoryPosts' => $categoryPostCollection,
             'recentPosts' => $recentPosts,
             'tags' => $tags,
         ]);
