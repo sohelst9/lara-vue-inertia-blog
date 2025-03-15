@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Middleware;
@@ -46,6 +47,9 @@ class HandleInertiaRequests extends Middleware
                 return [
                     'user' => Auth::check() ? Auth::user() : null
                 ];
+            },
+            'categories' => function (){
+                return category::select('id', 'name', 'slug')->latest()->take(5)->get();
             }
         ]);
     }

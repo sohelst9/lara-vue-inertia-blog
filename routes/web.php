@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/', [PagesController::class, 'index'])->name('home');
+Route::get('/categories', [CategoryConroller::class, 'categories'])->name('categories');
 Route::get('/blogs', [PagesController::class, 'blogs'])->name('blogs');
 Route::get('/category/blogs/{slug}', [CategoryConroller::class, 'categoryBlogs'])->name('category.blogs');
 Route::get('/blog/{slug}', [PagesController::class, 'blog'])->name('blog');

@@ -12,6 +12,14 @@ use Inertia\Inertia;
 
 class CategoryConroller extends Controller
 {
+    //--categories
+    public function categories()
+    {
+        $categories = category::latest()->paginate(10);
+        return Inertia::render('Categories', [
+            'allCategory' => $categories,
+        ]);
+    }
     //--categoryBlogs
     public function categoryBlogs($slug)
     {

@@ -26,20 +26,20 @@ console.log('Trending component featuredPosts:', props.featuredPosts);
                 <!-- Featured Post -->
                 <div class="col-lg-4" v-if="trendingPost">
                     <div class="post-entry-lg bg-white rounded-3 shadow-sm hover-effect">
-                        <a href="" class="d-block overflow-hidden rounded-top-3">
+                        <Link :href="`/blog/${trendingPost.data.slug}`" class="d-block overflow-hidden rounded-top-3">
                             <img :src="trendingPost.data.image" alt="Featured post"
                                 class="img-fluid post-img">
-                        </a>
+                        </Link>
                         <div class="p-4">
                             <div class="post-meta mb-2">
-                                <span class="category-badge">{{ trendingPost.data.category }}</span>
+                                <span class="category-badge"><Link :href="`/category/blogs/${trendingPost.data.category_slug}`">{{ trendingPost.data.category }}</Link></span>
                                 <span class="mx-1 text-muted">•</span>
                                 <span class="text-muted small">{{ trendingPost.data.created_at }}</span>
                             </div>
                             <h2 class="post-title mb-3">
-                                <a href="" class="text-decoration-none text-dark">
+                                <Link :href="`/blog/${trendingPost.data.slug}`" class="text-decoration-none text-dark">
                                     {{ trendingPost.data.title }}
-                                </a>
+                                </Link>
                             </h2>
                             <p class="post-excerpt text-muted mb-4">
                                 {{ trendingPost.data.sub_title }}
@@ -65,20 +65,20 @@ console.log('Trending component featuredPosts:', props.featuredPosts);
                                 <div class="col-lg-6" v-for="featurdPost in featuredPosts" :key="featurdPost.id">
                                     <div class="grid-posts">
                                         <div class="post-entry mb-4 bg-white rounded-3 shadow-sm hover-effect">
-                                            <a href="" class="d-block overflow-hidden rounded-top-3">
+                                            <Link :href="`/blog/${featurdPost.slug}`" class="d-block overflow-hidden rounded-top-3">
                                                 <img :src="featurdPost.image"
                                                     alt="Post image" class="img-fluid post-img">
-                                            </a>
+                                            </Link>
                                             <div class="p-3">
                                                 <div class="post-meta mb-2">
-                                                    <span class="category-badge sport">{{ featurdPost.category }}</span>
+                                                    <span class="category-badge sport"><Link :href="`/category/blogs/${featurdPost.category_slug}`">{{ featurdPost.category }}</Link></span>
                                                     <span class="mx-1 text-muted">•</span>
                                                     <span class="text-muted small">{{ featurdPost.created_at }}</span>
                                                 </div>
                                                 <h3 class="post-title small-title">
-                                                    <a href="" class="text-decoration-none text-dark">
+                                                    <Link :href="`/blog/${featurdPost.slug}`" class="text-decoration-none text-dark">
                                                         {{ featurdPost.short_title }}
-                                                    </a>
+                                                    </Link>
                                                 </h3>
                                             </div>
                                         </div>
@@ -96,7 +96,7 @@ console.log('Trending component featuredPosts:', props.featuredPosts);
                                     <div class="trending-posts">
 
                                         <div class="trending-post-item mb-4 pb-4 border-bottom" v-for="(trendingrightPost, index) in trendingrightPosts" :key="trendingrightPost.id">
-                                            <a href="" class="text-decoration-none">
+                                            <Link :href="`blog/${trendingrightPost.slug}`" class="text-decoration-none">
                                                 <div class="d-flex">
                                                     <span class="number me-3">{{ index+1 }}</span>
                                                     <div>
@@ -106,7 +106,7 @@ console.log('Trending component featuredPosts:', props.featuredPosts);
                                                         <span class="author text-muted small">{{ trendingrightPost.author }}</span>
                                                     </div>
                                                 </div>
-                                            </a>
+                                            </Link>
                                         </div>
 
                                      

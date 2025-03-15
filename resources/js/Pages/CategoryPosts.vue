@@ -38,7 +38,7 @@ const filtereLinks = computed(() => {
   return [...firstFivePage, {label: '...', url: null}, ...lastTwoPage];
 })
 
-console.log('categoryPosts', props.categoryPosts);
+// console.log('categoryPosts', props.categoryPosts);
 </script>
 
 
@@ -74,7 +74,7 @@ console.log('categoryPosts', props.categoryPosts);
       <div class="col-lg-8">
 
         <!-- Blog Posts Section -->
-        <section id="blog-posts" class="blog-posts section">
+        <section id="blog-posts" class="blog-posts section" v-if="categoryPosts.data.length > 0">
 
           <div class="container">
             <div class="row gy-4">
@@ -116,6 +116,8 @@ console.log('categoryPosts', props.categoryPosts);
           </div>
 
         </section><!-- /Blog Posts Section -->
+
+        <h3 v-else class="not_found_category_based_post"> There are no posts in this category</h3>
 
         <!-- Blog Pagination Section -->
         <section id="blog-pagination" class="blog-pagination section" v-if="categoryPosts.meta?.last_page > 1">
@@ -195,6 +197,18 @@ console.log('categoryPosts', props.categoryPosts);
 
 
 <style scoped>
+.not_found_category_based_post {
+    text-align: center;
+    margin-top: 50px;
+    color: #dc3545; /* Bootstrap danger color */
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 20px;
+    border: 2px dashed #dc3545;
+    border-radius: 10px;
+    background-color: #f8d7da;
+}
+
 /* Blog Posts Section */
 .blog-posts {
   padding: 4rem 0;

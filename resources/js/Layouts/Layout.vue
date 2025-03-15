@@ -1,12 +1,15 @@
 <script setup>
-import { ref } from 'vue';
-import { Link } from '@inertiajs/vue3';
+import { computed, ref } from 'vue';
+import { Link, usePage } from '@inertiajs/vue3';
 
 const isMenuOpen = ref(false);
 
 const toggleMenu = () => {
     isMenuOpen.value = !isMenuOpen.value;
 };
+const page = usePage();
+const categories = computed(() => page.props.categories);
+console.log('categories : ', categories.value);
 </script>
 
 <template>
@@ -41,6 +44,12 @@ const toggleMenu = () => {
                                 <Link href="/blogs" class="nav-link fw-semibold"
                                     :class="{ 'active': $page.url === '/blogs' }">Posts</Link>
                             </li>
+
+                            <li class="nav-item px-2">
+                                <Link href="/categories" class="nav-link fw-semibold"
+                                    :class="{ 'active': $page.url === '/categories' }">Categories</Link>
+                            </li>
+
                             <li class="nav-item px-2">
                                 <Link href="/contact" class="nav-link fw-semibold"
                                     :class="{ 'active': $page.url === '/contact' }">Contact</Link>
@@ -82,23 +91,28 @@ const toggleMenu = () => {
                         <h2 class="text-primary mb-4">WorldBlog</h2>
                         </Link>
                         <div class="footer-contact">
-                            <p class="mb-2"><i class="bi bi-geo-alt me-2"></i>A108 Adam Street</p>
-                            <p class="mb-2"><i class="bi bi-building me-2"></i>New York, NY 535022</p>
-                            <p class="mb-2"><i class="bi bi-telephone me-2"></i>+1 5589 55488 55</p>
-                            <p class="mb-4"><i class="bi bi-envelope me-2"></i>info@example.com</p>
+                            <p class="mb-2"><i class="bi bi-geo-alt me-2"></i>Dhaka, Bangladesh</p>
+                            <p class="mb-2"><i class="bi bi-building me-2"></i>123, Main Road</p>
+                            <p class="mb-2"><i class="bi bi-telephone me-2"></i>+880 1234 5678</p>
+                            <p class="mb-4"><i class="bi bi-envelope me-2"></i>info@worldblog.com</p>
                             <div class="d-flex social-links">
-                                <a href="#" class="btn btn-primary rounded-circle me-2">
+                                <a href="https://twitter.com" target="_blank"
+                                    class="btn btn-primary rounded-circle me-2">
                                     <i class="bi bi-twitter-x"></i>
                                 </a>
-                                <a href="#" class="btn btn-primary rounded-circle me-2">
+                                <a href="https://facebook.com" target="_blank"
+                                    class="btn btn-primary rounded-circle me-2">
                                     <i class="bi bi-facebook"></i>
                                 </a>
-                                <a href="#" class="btn btn-primary rounded-circle me-2">
+                                <a href="https://instagram.com" target="_blank"
+                                    class="btn btn-primary rounded-circle me-2">
                                     <i class="bi bi-instagram"></i>
                                 </a>
-                                <a href="#" class="btn btn-primary rounded-circle me-2">
+                                <a href="https://linkedin.com" target="_blank"
+                                    class="btn btn-primary rounded-circle me-2">
                                     <i class="bi bi-linkedin"></i>
                                 </a>
+
                             </div>
                         </div>
                     </div>
@@ -134,25 +148,11 @@ const toggleMenu = () => {
                     <div class="col-lg-4 col-md-6">
                         <h4 class="text-light mb-4">Blog Categories</h4>
                         <ul class="list-unstyled footer-links">
-                            <li class="mb-2">
-                                <a href="#" class="text-secondary"><i class="bi bi-chevron-right me-2"></i>Web
-                                    Design</a>
+                            <li class="mb-2" v-for="category in categories" :key="category.id">
+                                <Link :href="`/category/blogs/${category.slug}`" class="text-secondary"><i
+                                    class="bi bi-chevron-right me-2"></i>{{ category.name }}</Link>
                             </li>
-                            <li class="mb-2">
-                                <a href="#" class="text-secondary"><i class="bi bi-chevron-right me-2"></i>Web
-                                    Development</a>
-                            </li>
-                            <li class="mb-2">
-                                <a href="#" class="text-secondary"><i class="bi bi-chevron-right me-2"></i>Product
-                                    Management</a>
-                            </li>
-                            <li class="mb-2">
-                                <a href="#" class="text-secondary"><i class="bi bi-chevron-right me-2"></i>Marketing</a>
-                            </li>
-                            <li class="mb-2">
-                                <a href="#" class="text-secondary"><i class="bi bi-chevron-right me-2"></i>Graphic
-                                    Design</a>
-                            </li>
+
                         </ul>
                     </div>
                 </div>

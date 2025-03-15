@@ -6,7 +6,6 @@ use App\Http\Resources\PostResource;
 use App\Models\category;
 use App\Models\Post;
 use App\Models\Tag;
-use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class PagesController extends Controller
@@ -56,8 +55,13 @@ class PagesController extends Controller
     //--blogs
     public function blogs()
     {
+        $posts = PostResource::collection(Post::with('category')->latest()->paginate(6));
+        $recent_posts = PostResource::collection(Post::latest()->take(5)->get());
+        $tags = Tag::take(16)->get();
         return Inertia::render('Blogs', [
-            'blogImage' => asset('assets/img/blog/blog-1.jpg'),
+            'posts' => $posts,
+            'recent_posts' => $recent_posts,
+            'tags' => $tags,
         ]);
     }
 

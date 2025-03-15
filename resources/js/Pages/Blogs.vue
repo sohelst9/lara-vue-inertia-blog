@@ -1,13 +1,26 @@
 <script setup>
+import { router } from '@inertiajs/vue3';
 
 const props = defineProps({
-  blogImage: {
-    type: String,
+  posts: {
+    type: Object,
     required: true
-
   },
+  recent_posts: {
+    type: Object,
+    required: true
+  },
+  tags : {
+    type: Array,
+    required: true
+  }
 })
 
+const changeblogPage = (page) => {
+  router.visit(page)
+  console.log('page', page)
+}
+console.log('posts', props.posts)
 </script>
 
 <template>
@@ -39,179 +52,75 @@ const props = defineProps({
       <div class="col-lg-8">
 
         <!-- Blog Posts Section -->
-        <section id="blog-posts" class="blog-posts section">
+        <section id="blog-posts" class="blog-posts section no-top-padding" v-if="posts.data.length > 0">
 
           <div class="container">
             <div class="row gy-4">
 
-              <div class="col-lg-6">
+              <div class="col-lg-6" v-for="post in posts.data" :key="post.id">
                 <article class="position-relative h-100">
 
                   <div class="post-img position-relative overflow-hidden">
-                    <img :src="blogImage" class="img-fluid" alt="">
-                    <span class="post-date">December 12</span>
+                    <img :src="post.image" class="img-fluid" :alt="post.title">
+                    <span class="post-date">{{ post.created_at }}</span>
                   </div>
 
                   <div class="post-content d-flex flex-column">
 
-                    <h3 class="post-title">Dolorum optio tempore voluptas dignissimos cumque fuga
-                      qui quibusdam quia</h3>
+                    <h3 class="post-title">
+                      <Link :href="`/blog/${post.slug}`">{{ post.title }}</Link>
+                    </h3>
 
                     <div class="meta d-flex align-items-center">
                       <div class="d-flex align-items-center">
-                        <i class="bi bi-person"></i> <span class="ps-2">John Doe</span>
+                        <i class="bi bi-person"></i> <span class="ps-2">{{ post.author }}</span>
                       </div>
                       <span class="px-3 text-black-50">/</span>
                       <div class="d-flex align-items-center">
-                        <i class="bi bi-folder2"></i> <span class="ps-2">Politics</span>
+                        <i class="bi bi-folder2"></i> <span class="ps-2"><Link :href="`/category/blogs/${post.category_slug}`">{{ post.category }}</Link></span>
                       </div>
                     </div>
 
                     <p>
-                      Similique neque nam consequuntur ad non maxime aliquam quas. Quibusdam animi
-                      praesentium. Aliquam et laboriosam eius aut nostrum quidem aliquid dicta.
+                      {{ post.sub_title }}
                     </p>
 
                     <hr>
 
-                    <a href="blog-details.html" class="readmore stretched-link"><span>Read
-                        More</span><i class="bi bi-arrow-right"></i></a>
+                    <Link :href="`/blog/${post.slug}`" class="readmore"><span>Read More</span><i class="bi bi-arrow-right"></i></Link>
 
                   </div>
 
                 </article>
               </div>
-              <div class="col-lg-6">
-                <article class="position-relative h-100">
-
-                  <div class="post-img position-relative overflow-hidden">
-                    <img :src="blogImage" class="img-fluid" alt="">
-                    <span class="post-date">December 12</span>
-                  </div>
-
-                  <div class="post-content d-flex flex-column">
-
-                    <h3 class="post-title">Dolorum optio tempore voluptas dignissimos cumque fuga
-                      qui quibusdam quia</h3>
-
-                    <div class="meta d-flex align-items-center">
-                      <div class="d-flex align-items-center">
-                        <i class="bi bi-person"></i> <span class="ps-2">John Doe</span>
-                      </div>
-                      <span class="px-3 text-black-50">/</span>
-                      <div class="d-flex align-items-center">
-                        <i class="bi bi-folder2"></i> <span class="ps-2">Politics</span>
-                      </div>
-                    </div>
-
-                    <p>
-                      Similique neque nam consequuntur ad non maxime aliquam quas. Quibusdam animi
-                      praesentium. Aliquam et laboriosam eius aut nostrum quidem aliquid dicta.
-                    </p>
-
-                    <hr>
-
-                    <a href="blog-details.html" class="readmore stretched-link"><span>Read
-                        More</span><i class="bi bi-arrow-right"></i></a>
-
-                  </div>
-
-                </article>
-              </div>
-              <div class="col-lg-6">
-                <article class="position-relative h-100">
-
-                  <div class="post-img position-relative overflow-hidden">
-                    <img :src="blogImage" class="img-fluid" alt="">
-                    <span class="post-date">December 12</span>
-                  </div>
-
-                  <div class="post-content d-flex flex-column">
-
-                    <h3 class="post-title">Dolorum optio tempore voluptas dignissimos cumque fuga
-                      qui quibusdam quia</h3>
-
-                    <div class="meta d-flex align-items-center">
-                      <div class="d-flex align-items-center">
-                        <i class="bi bi-person"></i> <span class="ps-2">John Doe</span>
-                      </div>
-                      <span class="px-3 text-black-50">/</span>
-                      <div class="d-flex align-items-center">
-                        <i class="bi bi-folder2"></i> <span class="ps-2">Politics</span>
-                      </div>
-                    </div>
-
-                    <p>
-                      Similique neque nam consequuntur ad non maxime aliquam quas. Quibusdam animi
-                      praesentium. Aliquam et laboriosam eius aut nostrum quidem aliquid dicta.
-                    </p>
-
-                    <hr>
-
-                    <a href="blog-details.html" class="readmore stretched-link"><span>Read
-                        More</span><i class="bi bi-arrow-right"></i></a>
-
-                  </div>
-
-                </article>
-              </div>
-              <div class="col-lg-6">
-                <article class="position-relative h-100">
-
-                  <div class="post-img position-relative overflow-hidden">
-                    <img :src="blogImage" class="img-fluid" alt="">
-                    <span class="post-date">December 12</span>
-                  </div>
-
-                  <div class="post-content d-flex flex-column">
-
-                    <h3 class="post-title">Dolorum optio tempore voluptas dignissimos cumque fuga
-                      qui quibusdam quia</h3>
-
-                    <div class="meta d-flex align-items-center">
-                      <div class="d-flex align-items-center">
-                        <i class="bi bi-person"></i> <span class="ps-2">John Doe</span>
-                      </div>
-                      <span class="px-3 text-black-50">/</span>
-                      <div class="d-flex align-items-center">
-                        <i class="bi bi-folder2"></i> <span class="ps-2">Politics</span>
-                      </div>
-                    </div>
-
-                    <p>
-                      Similique neque nam consequuntur ad non maxime aliquam quas. Quibusdam animi
-                      praesentium. Aliquam et laboriosam eius aut nostrum quidem aliquid dicta.
-                    </p>
-
-                    <hr>
-
-                    <a href="blog-details.html" class="readmore stretched-link"><span>Read
-                        More</span><i class="bi bi-arrow-right"></i></a>
-
-                  </div>
-
-                </article>
-              </div>
+            
 
             </div>
           </div>
 
         </section><!-- /Blog Posts Section -->
+        <h3 v-else class="not_found_post"> No posts found</h3>
 
         <!-- Blog Pagination Section -->
-        <section id="blog-pagination" class="blog-pagination section">
+        <section id="blog-pagination" class="blog-pagination section" v-if="posts.meta?.last_page > 1">
 
           <div class="container">
             <div class="d-flex justify-content-center">
               <ul>
-                <li><a href="#"><i class="bi bi-chevron-left"></i></a></li>
-                <li><a href="#">1</a></li>
-                <li><a href="#" class="active">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li>...</li>
-                <li><a href="#">10</a></li>
-                <li><a href="#"><i class="bi bi-chevron-right"></i></a></li>
+
+                <li :class="{ 'disabled' : !posts.links?.prev }">
+                  <a href="#" v-if="posts.links?.prev" @click.prevent="changeblogPage(posts.links.prev)"><i class="bi bi-chevron-left"></i></a>
+                  <a  v-else><i class="bi bi-chevron-left"></i></a>
+                </li>
+
+                <li>
+                  <a class="active">{{ posts.meta.current_page }}</a>
+                </li>
+
+                <li :class="{ 'disabled' : !posts.links?.next}">
+                  <a href="#" v-if="posts.links?.next" @click.prevent="changeblogPage(posts.links.next)"><i class="bi bi-chevron-right"></i></a>
+                  <a v-else><i class="bi bi-chevron-right"></i></a>
+                </li>
               </ul>
             </div>
           </div>
@@ -223,51 +132,21 @@ const props = defineProps({
 
       <div class="col-lg-4 blogs_sidebar">
 
-        <div class="widgets-container">
-          <!-- Search Widget -->
-          <div class="search-widget widget-item">
-
-            <h3 class="widget-title">Search</h3>
-            <form action="">
-              <input type="text">
-              <button type="submit" title="Search"><i class="bi bi-search"></i></button>
-            </form>
-
-          </div><!--/Search Widget -->
-
+        <div class="widgets-container no-top-padding">
+          
           <!-- Recent Posts Widget -->
           <div class="recent-posts-widget widget-item">
 
             <h3 class="widget-title">Recent Posts</h3>
 
-            <div class="post-item">
-              <img :src="blogImage" alt="" class="flex-shrink-0">
+            <div class="post-item" v-for="recent_post in recent_posts.data" :key="recent_post.id">
+              <img :src="recent_post.image" :alt="recent_post.title" class="flex-shrink-0">
               <div>
-                <h4><a href="blog-details.html">Nihil blanditiis at in nihil autem</a></h4>
-                <time datetime="2020-01-01">Jan 1, 2020</time>
+                <h4><Link :href="`/blog/${recent_post.slug}`">{{ recent_post.title }}</Link></h4>
+                <time datetime="2020-01-01">{{ recent_post.created_at }}</time>
               </div>
             </div>
-            <div class="post-item">
-              <img :src="blogImage" alt="" class="flex-shrink-0">
-              <div>
-                <h4><a href="blog-details.html">Nihil blanditiis at in nihil autem</a></h4>
-                <time datetime="2020-01-01">Jan 1, 2020</time>
-              </div>
-            </div>
-            <div class="post-item">
-              <img :src="blogImage" alt="" class="flex-shrink-0">
-              <div>
-                <h4><a href="blog-details.html">Nihil blanditiis at in nihil autem</a></h4>
-                <time datetime="2020-01-01">Jan 1, 2020</time>
-              </div>
-            </div>
-            <div class="post-item">
-              <img :src="blogImage" alt="" class="flex-shrink-0">
-              <div>
-                <h4><a href="blog-details.html">Nihil blanditiis at in nihil autem</a></h4>
-                <time datetime="2020-01-01">Jan 1, 2020</time>
-              </div>
-            </div>
+       
 
 
 
@@ -278,17 +157,7 @@ const props = defineProps({
 
             <h3 class="widget-title">Tags</h3>
             <ul>
-              <li><a href="#">App</a></li>
-              <li><a href="#">IT</a></li>
-              <li><a href="#">Business</a></li>
-              <li><a href="#">Mac</a></li>
-              <li><a href="#">Design</a></li>
-              <li><a href="#">Office</a></li>
-              <li><a href="#">Creative</a></li>
-              <li><a href="#">Studio</a></li>
-              <li><a href="#">Smart</a></li>
-              <li><a href="#">Tips</a></li>
-              <li><a href="#">Marketing</a></li>
+              <li v-for="tag in tags" :key="tag.id"><a>{{ tag.name }}</a></li>
             </ul>
 
           </div><!--/Tags Widget -->
@@ -303,6 +172,23 @@ const props = defineProps({
 
 
 <style scoped>
+.not_found_post {
+    text-align: center;
+    margin-top: 50px;
+    color: #dc3545; /* Bootstrap danger color */
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 20px;
+    border: 2px dashed #dc3545;
+    border-radius: 10px;
+    background-color: #f8d7da;
+}
+
+/* Remove top padding from both sections to align properly */
+.no-top-padding {
+    padding-top: 0 !important;
+}
+
 /* Blog Posts Section */
 .blog-posts {
   padding: 4rem 0;
@@ -380,7 +266,13 @@ const props = defineProps({
   line-height: 1.4;
 }
 
-.post-title:hover {
+.post-title a {
+  color: #1e293b;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.post-title a:hover {
   color: #3b82f6;
 }
 
@@ -402,6 +294,33 @@ const props = defineProps({
 
 .meta .px-3 {
   padding: 0 0.75rem;
+}
+
+/* Read More button styling */
+.readmore {
+  display: inline-flex;
+  align-items: center;
+  color: #3b82f6;
+  font-weight: 500;
+  text-decoration: none;
+  margin-top: auto;
+  transition: all 0.3s ease;
+}
+
+.readmore span {
+  margin-right: 0.5rem;
+}
+
+.readmore i {
+  transition: transform 0.3s ease;
+}
+
+.readmore:hover {
+  color: #1d4ed8;
+}
+
+.readmore:hover i {
+  transform: translateX(5px);
 }
 
 /* Pagination */
